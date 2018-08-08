@@ -1,0 +1,18 @@
+<div class="atria-navbar">
+  <div class="top-nav">
+      <div class="navbar-icon">
+        <i class="pi pi-bars" (click)="masked = !masked"></i>
+      </div>  
+      <div class="navbar-title">
+        <div>Content Page</div>
+      </div> 
+  </div>   
+
+  <div class="aside" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
+    <div class="aside-head" (click)="masked = !masked">
+        <i class="pi pi-chevron-left"></i>    
+    </div>    
+  </div>
+</div>
+
+<div [ngClass]="{'mask': masked}" (click)="masked = !masked"></div>
