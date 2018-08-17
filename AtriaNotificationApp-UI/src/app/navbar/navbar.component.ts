@@ -13,4 +13,11 @@ export class NavbarComponent implements OnInit {
   }
 
   masked: boolean = false;
+
+  title = 'App Title';
+
+  maskedToggle(){
+    this.masked = !this.masked;
+  }
+
 }
