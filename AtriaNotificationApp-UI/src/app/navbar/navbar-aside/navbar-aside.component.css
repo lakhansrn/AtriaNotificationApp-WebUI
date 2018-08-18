@@ -1,0 +1,49 @@
+.aside{
+    width: calc(5vw + 200px);
+    background: white;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 9999; 
+    border-right: 1px solid lightgrey;
+    display: flex;  
+    flex-flow: column;
+    align-items: center;
+    padding: 1.5em 1em;
+    overflow-y: auto; 
+}
+.aside > :last-child {
+    padding-bottom: 3em;
+}
+.aside-visible{
+    transform: translateX(0px);
+    transition: transform 0.5s ease;
+}
+.aside-hidden{    
+    transform: translateX(-500px);
+    transition: transform 0.5s ease;
+}
+.aside-head{
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    width: 2.2em;
+    height: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.navbar-links{
+    margin: 1em;
+    color: grey;
+    cursor: pointer;    
+    text-align: center;
+}
+.separator{
+    border-bottom: 1px solid lightgrey;
+    width: 100%;
+    margin: 1em;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(6, 40, 150);
+}

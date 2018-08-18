@@ -1,0 +1,16 @@
+<div class="atria-navbar">
+  <div class="top-nav">
+      <div class="navbar-icon">
+        <i class="pi pi-bars" (click)="maskedToggle()"></i>
+      </div>  
+      <div class="navbar-title">
+        <div>{{title}}</div>
+      </div> 
+  </div>   
+  <app-navbar-aside 
+  [masked]="masked"
+  (maskedToggle)="maskedToggle()"
+  ></app-navbar-aside>
+</div>
+
+<div [ngClass]="{'mask': masked}" (click)="maskedToggle()"></div>
