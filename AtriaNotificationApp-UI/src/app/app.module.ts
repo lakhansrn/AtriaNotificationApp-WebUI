@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -38,7 +39,7 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
-    LoginComponent,    
+    LoginComponent, 
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,8 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     AppRoutingModule,
     CardModule,
     MenuModule,    
-    PanelMenuModule,    
+    PanelMenuModule,  
+    FormsModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

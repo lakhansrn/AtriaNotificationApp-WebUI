@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,4 +13,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  response = '';
+  password: string;
+
+  validate(){
+    if(this.password.length < 8){
+      this.response = "Password should be at least 8 characters long";
+    }
+    else
+      this.response = '';
+  }
 }
