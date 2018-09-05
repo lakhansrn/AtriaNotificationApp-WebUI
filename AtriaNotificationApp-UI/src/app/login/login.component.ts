@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   response = '';
   password: string;
+   
 
   validate(){
     if(this.password.length < 8){
