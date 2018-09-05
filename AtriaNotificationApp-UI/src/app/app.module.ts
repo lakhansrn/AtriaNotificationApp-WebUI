@@ -38,7 +38,7 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
-    LoginComponent,    
+    LoginComponent,        
   ],
   imports: [
     BrowserModule,

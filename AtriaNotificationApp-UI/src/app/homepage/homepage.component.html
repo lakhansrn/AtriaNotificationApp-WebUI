@@ -1,19 +1,50 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }} !
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container-fluid bg-light pb-3">
+  <div class="container-fluid">
+    <div class="pt-5">
+      <div class="d-flex align-items-center py-5">
+        <h1 class="text-left display-3 head-border">Featured Events</h1>
+      </div>
+
+      <div class="feat-container">
+        <div class="card feat-card" *ngFor="let event of feat_events()" [ngClass]="event.css">
+          <img class="card-img-top" [src]="event.img" *ngIf="event.img" class="img-fluid">
+          <div class="card-body feat-body">
+            <h4 class="card-title text-capitalize m-0">{{event.title}}</h4>
+            <!-- <p class="card-text">{{event.description}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="event-announcement-container">
+      <div style="padding-right: 1.5rem;">
+        <div class="py-5">
+          <h1 class="title-border">All Events</h1>
+        </div>
+        <div class="event-card card" *ngFor="let event of all_events()">
+          <div class="d-flex event-card-box">
+            <img class="flex-30 img-fluid" *ngIf="event.img" [src]="event.img">
+            <div class="event-card-body flex-70">
+              <h4 class="event-card-title text-capitalize" *ngIf="event.title">{{event.title}}</h4>
+              <small class="text-secondary">Posted at {{event.posted}}</small>
+              <p class="pt-2 text-secondary">{{event.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="annoucments">
+        <div class="py-5">
+          <h1 class="title-border">Annoucements</h1>
+        </div>
+        <div class="announcement-card">
+          <div style="display: flex; flex-flow: column; margin-bottom: 1.5rem;" class="card p-3" *ngFor="let a of annoucements()">            
+            <p class="pt-2">{{a.description}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>  
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
