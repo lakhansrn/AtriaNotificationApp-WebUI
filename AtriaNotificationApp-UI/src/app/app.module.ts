@@ -13,6 +13,7 @@ import { AnnouncerComponent } from './announcer/announcer.component';
 import { WriterComponent } from './writer/writer.component';
 import { MenuModule } from 'primeng/menu';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { CarouselModule } from 'primeng/carousel';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { RegisterWritersComponent } from './announcer/register-writers/register-writers.component';
 import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
@@ -21,6 +22,7 @@ import { ContentCreationComponent } from './writer/content-creation/content-crea
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
+import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
-    LoginComponent,        
+    LoginComponent,
+    EventCarouselComponent,        
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     CardModule,
     MenuModule,    
     PanelMenuModule,    
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
