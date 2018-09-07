@@ -23,6 +23,7 @@ import { SendApprovalComponent } from './writer/send-approval/send-approval.comp
 import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
+import { BannerComponent } from './homepage/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EventCarouselComponent } from './homepage/event-carousel/event-carousel
     SendApprovalComponent,
     PreviewContentComponent,
     LoginComponent,
-    EventCarouselComponent,        
+    EventCarouselComponent,
+    BannerComponent,        
   ],
   imports: [
     BrowserModule,

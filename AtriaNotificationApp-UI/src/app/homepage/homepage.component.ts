@@ -14,7 +14,8 @@ export class HomepageComponent implements OnInit {
 
   events: Array<Object> = [
     {
-      event: 'dexterix',
+      event_name: 'dexterix',
+      event_banner: 'https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
       annoucements: [
         {
           title: 'code sprint',
@@ -43,7 +44,8 @@ export class HomepageComponent implements OnInit {
       ]
     },
     {
-      event: 'go green',
+      event_name: 'go green',
+      event_banner: 'https://images.pexels.com/photos/289737/pexels-photo-289737.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
       annoucements: [
         {
           title: 'stop wasting',

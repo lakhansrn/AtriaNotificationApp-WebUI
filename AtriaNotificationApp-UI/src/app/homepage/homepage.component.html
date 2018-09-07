@@ -1,5 +1,6 @@
-<div class="container-fluid bg-light py-5 home-page">
-  <div class="container-fluid">
+<div class="bg-light home-page">
+  <app-banner [events]="events"></app-banner>
+  <div class="container-fluid">    
     <app-event-carousel
     *ngFor="let event of events"
     [event]="event"></app-event-carousel>
