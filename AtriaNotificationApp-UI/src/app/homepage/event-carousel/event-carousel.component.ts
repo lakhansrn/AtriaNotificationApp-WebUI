@@ -9,9 +9,8 @@ export class EventCarouselComponent implements OnInit {
 
   constructor() { }
 
+  @Input() event;
   ngOnInit() {
   }
-
-  @Input() event;
 
 }

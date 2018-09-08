@@ -24,13 +24,13 @@ const routes: Routes = [
   { path: 'contentCreation', component: ContentCreationComponent },
   { path: 'previewContent', component: PreviewContentComponent },
   { path: 'sendapproval', component: SendApprovalComponent },
-]
+];
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forRoot(routes)
-  ],  
+  ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

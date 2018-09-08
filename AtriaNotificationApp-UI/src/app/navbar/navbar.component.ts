@@ -9,14 +9,12 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  masked = false;
+  title = 'App Title';
   ngOnInit() {
   }
 
-  masked: boolean = false;
-
-  title = 'App Title';
-
-  maskedToggle(){
+  maskedToggle() {
     this.masked = !this.masked;
   }
 
