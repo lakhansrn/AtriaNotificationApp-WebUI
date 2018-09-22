@@ -9,13 +9,12 @@ export class NavbarAsideComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {  
-  }
-
   @Input() masked;
   @Output() maskedToggle = new EventEmitter<boolean>();
+  ngOnInit() {
+  }
 
-  maskToggle(): void{
+  maskToggle(): void {
     this.maskedToggle.emit();
   }
 

@@ -24,35 +24,37 @@ import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     HomepageComponent,
     NavbarComponent,
     NavbarAsideComponent,
     EventRegistrationComponent,
     AnnouncerComponent,
     WriterComponent,
-    AnnouncementsComponent,    
+    AnnouncementsComponent,
     RegisterWritersComponent,
-    EventsAnnoucementsCreationComponent,    
+    EventsAnnoucementsCreationComponent,
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
     LoginComponent,
     EventCarouselComponent,
-    BannerComponent,        
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CardModule,
-    MenuModule,    
-    PanelMenuModule,    
-    CarouselModule
+    MenuModule,
+    PanelMenuModule,
+    CarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
