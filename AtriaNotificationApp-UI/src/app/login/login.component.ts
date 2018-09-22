@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   response = '';
   password: string;
    
-
+/*
+ (keyup)="validate()"
   validate(){
     if(this.password.length < 8){
       this.response = "Password should be at least 8 characters long";
@@ -25,3 +26,4 @@ export class LoginComponent implements OnInit {
       this.response = '';
   }
 }
+*/
