@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Event } from '../model/event.model';
 import { Observable, of } from 'rxjs';
-import { mockEvents } from './mock-events';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Banner } from '../banner/banner.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class BannerService {
 
-  private events_url = 'https://localhost:5001/api/event';
+  private banners_url = 'https://localhost:5001/api/banner';
   constructor(private http: HttpClient) { }
-
-  getEvents(): Observable<Event[]> {
+  getBanners(): Observable<Banner[]> {
     // return of(mockEvents);
-    return this.http.get<Event[]>(this.events_url)
+    return this.http.get<Banner[]>(this.banners_url)
       .pipe(
-      tap(events => {
-        this.log('fetched Events');
-        console.log(events);
+      tap(banners => {
+        this.log('fetched Banners');
+        console.log(banners);
       }),
-      catchError(this.handleError('getHeroes', []))
+      catchError(this.handleError('getBanners', []))
     );
   }
   private log(arg0: string): any {
@@ -39,5 +38,6 @@ export class EventService {
       return of(result as T);
     };
   }
+
 
 }

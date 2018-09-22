@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Event } from '../../model/event.model';
 import { Banner } from './banner.model';
+import { BannerService } from '../services/banner.service';
 
 @Component({
   selector: 'app-banner',
@@ -9,7 +10,7 @@ import { Banner } from './banner.model';
 })
 export class BannerComponent implements OnInit, OnDestroy {
 
-  constructor(private _change_detector: ChangeDetectorRef) { }
+  constructor(private _change_detector: ChangeDetectorRef, private bannerService: BannerService) { }
 
   // choose no. of banners for slideshow
   // no_of_banner_images = 3;
@@ -19,13 +20,21 @@ export class BannerComponent implements OnInit, OnDestroy {
   slideshow: any;
   bannerEvents: Array<Banner>;
 
-  @Input() events;
+  @Input()
   ngOnInit() {
-    this.bannerEvents = this.filterEvents(this.events);
-    this.slideshow = setInterval(() => {
-      this._change_detector.markForCheck();
-      this.changeSlide(+1, this.bannerEvents[0]);
-    }, this.interval_slideshow);
+    this.initBanner();
+  }
+
+  private initBanner() {
+
+    this.bannerService.getBanners().subscribe(banners => {
+      this.bannerEvents = banners;
+      this.slideshow = setInterval(() => {
+        this._change_detector.markForCheck();
+        this.changeSlide(+1, this.current_banner);
+      }, this.interval_slideshow);
+    }
+      );
   }
 
   filterEvents(events): Array<Banner> {
@@ -50,16 +59,16 @@ export class BannerComponent implements OnInit, OnDestroy {
     clearInterval(this.slideshow);
   }
 
-  changeSlide(val, currentBanner: Banner) {
+  changeSlide(val, id: number) {
 
     if (val > 0) {
-      if (currentBanner.id === this.bannerEvents.length - 1) {
+      if ( id === this.bannerEvents.length - 1) {
         this.current_banner = 0;
       } else {
         this.current_banner += val;
       }
     } else {
-      if (currentBanner.id === 0) {
+      if ( id === 0) {
         this.current_banner = this.bannerEvents.length - 1;
       } else {
         this.current_banner += val;

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { EventService } from '../event.service';
+import { Event } from '../../model/event.model';
 
 @Component({
   selector: 'app-event-carousel',
@@ -7,10 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EventCarouselComponent implements OnInit {
 
-  constructor() { }
+  events: Event[];
 
-  @Input() event;
+  constructor(private eventService: EventService) { }
+
   ngOnInit() {
+    this.getEvents();
   }
 
+  getEvents() {
+    this.eventService.getEvents().subscribe(events => this.events = events);
+  }
 }

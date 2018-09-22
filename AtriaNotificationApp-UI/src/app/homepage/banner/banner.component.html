@@ -3,8 +3,8 @@
     <div class="banner" *ngIf="e.id == current_banner">
       <img class="img-fluid" [src]="e.img">
       <div class="banner-title banner-align-center"><span>{{e.title}}</span></div>
-      <i class="pi pi-chevron-left banner-align-center banner-nav" (click)="changeSlide(-1, e)"></i>
-      <i class="pi pi-chevron-right banner-align-center banner-nav" (click)="changeSlide(+1, e)"></i>
+      <i class="pi pi-chevron-left banner-align-center banner-nav" (click)="changeSlide(-1, e.id)"></i>
+      <i class="pi pi-chevron-right banner-align-center banner-nav" (click)="changeSlide(+1, e.id)"></i>
     </div>
   </div>
 </div>
