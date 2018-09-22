@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BannerComponent } from './homepage/banner/banner.component';
     CardModule,
     MenuModule,
     PanelMenuModule,
-    CarouselModule
+    CarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
