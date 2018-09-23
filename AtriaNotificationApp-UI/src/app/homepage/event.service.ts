@@ -15,15 +15,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
-    // return of(mockEvents);
-    return this.http.get<Event[]>(this.events_url)
-      .pipe(
-      tap(events => {
-        this.log('fetched Events');
-        console.log(events);
-      }),
-      catchError(this.handleError('getHeroes', []))
-    );
+     return of(mockEvents);
   }
   private log(arg0: string): any {
     console.log(arg0);
