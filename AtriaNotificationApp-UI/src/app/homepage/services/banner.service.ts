@@ -11,7 +11,7 @@ import { Banner } from '../banner/banner.model';
 })
 export class BannerService {
 
-  private banners_url = 'https://localhost:5001/api/banner';
+  private banners_url = 'https://atrianotifications.azurewebsites.net/api/banner';
   constructor(private http: HttpClient) { }
   getBanners(): Observable<Banner[]> {
     // return of(mockEvents);
