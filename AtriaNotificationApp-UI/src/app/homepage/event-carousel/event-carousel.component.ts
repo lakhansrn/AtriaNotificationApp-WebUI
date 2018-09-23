@@ -18,6 +18,9 @@ export class EventCarouselComponent implements OnInit {
   }
 
   getEvents() {
-    this.eventService.getEvents().subscribe(events => this.events = events);
+    this.eventService.getEvents().subscribe(events => {
+      this.events = events;
+      console.log(this.events);
+    });
   }
 }

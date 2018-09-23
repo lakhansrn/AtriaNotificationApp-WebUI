@@ -6,7 +6,7 @@ export const mockEvents: Event[] = [
       event_banner: 'https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
       description: '',
       showAsBanner: true,
-      annoucements: [
+      announcements: [
         {
           title: 'code sprint',
           img: 'https://images.pexels.com/photos/533671/pexels-photo-533671.jpeg?auto=compress&cs=tinysrgb&h=350',
@@ -38,7 +38,7 @@ export const mockEvents: Event[] = [
       event_banner: 'https://images.pexels.com/photos/289737/pexels-photo-289737.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
       description: '',
       showAsBanner: false,
-      annoucements: [
+      announcements: [
         {
           title: 'stop wasting',
           img: 'https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&h=350',
@@ -70,7 +70,7 @@ export const mockEvents: Event[] = [
       event_banner: 'https://images.pexels.com/photos/239886/pexels-photo-239886.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
       description: '',
       showAsBanner: true,
-      annoucements: [
+      announcements: [
         {
           title: 'stop wasting',
           img: 'https://images.pexels.com/photos/595804/pexels-photo-595804.jpeg?auto=compress&cs=tinysrgb&h=350',

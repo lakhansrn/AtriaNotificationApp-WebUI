@@ -11,11 +11,19 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class EventService {
 
-  private events_url = 'https://localhost:5001/api/event';
+  private events_url = 'https://atrianotificationrestapi.azurewebsites.net/api/event';
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
-     return of(mockEvents);
+     // return of(mockEvents);
+     return this.http.get<Event[]>(this.events_url)
+     .pipe(
+     tap(banners => {
+       this.log('fetched Event');
+       console.log(banners);
+     }),
+     catchError(this.handleError('getEvents', []))
+   );
   }
   private log(arg0: string): any {
     console.log(arg0);

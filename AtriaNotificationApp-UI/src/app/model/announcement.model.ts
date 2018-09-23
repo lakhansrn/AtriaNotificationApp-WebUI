@@ -1,4 +1,4 @@
-export class Annoucement {
+export class Announcement {
     title: string;
     img: string;
     description: string;

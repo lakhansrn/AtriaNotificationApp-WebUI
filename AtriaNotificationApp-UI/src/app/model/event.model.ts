@@ -1,9 +1,9 @@
-import { Annoucement } from './annoucement.model';
+import { Announcement } from './announcement.model';
 
 export class Event {
     event_name: string;
     event_banner: string;
-    annoucements: Annoucement[];
+    announcements: Announcement[];
     description: string;
     showAsBanner: boolean;
 }
