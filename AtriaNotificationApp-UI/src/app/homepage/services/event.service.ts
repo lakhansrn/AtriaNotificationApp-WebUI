@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Event } from '../model/event.model';
+import { Event } from '../../model/event.model';
 import { Observable, of } from 'rxjs';
-import { mockEvents } from './mock-events';
+import { mockEvents } from '../mock-events';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
