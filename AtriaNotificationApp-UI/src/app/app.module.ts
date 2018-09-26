@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -54,7 +55,8 @@ import { HttpClientModule } from '@angular/common/http';
     MenuModule,
     PanelMenuModule,
     CarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

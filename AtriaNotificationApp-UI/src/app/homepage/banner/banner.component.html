@@ -1,10 +1,10 @@
-<div class="event-banner">
-  <div *ngFor="let e of bannerEvents;">
-    <div class="banner" *ngIf="e.id == current_banner">
-      <img class="img-fluid" [src]="e.img">
-      <div class="banner-title banner-align-center"><span>{{e.title}}</span></div>
-      <i class="pi pi-chevron-left banner-align-center banner-nav" (click)="changeSlide(-1, e.id)"></i>
-      <i class="pi pi-chevron-right banner-align-center banner-nav" (click)="changeSlide(+1, e.id)"></i>
-    </div>
-  </div>
+<div class="py-4 event-banner">
+  <ngb-carousel *ngIf="bannerEvents">
+    <ng-template ngbSlide *ngFor="let e of bannerEvents">
+      <img [src]="e.img" class="img-fluid">
+      <div class="carousel-caption">
+        <h3>{{e.title}}</h3>      
+      </div>
+    </ng-template>  
+  </ngb-carousel>
 </div>
