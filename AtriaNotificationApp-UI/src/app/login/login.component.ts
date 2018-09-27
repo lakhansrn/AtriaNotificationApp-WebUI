@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+
+
+
 
 @Component({
   selector: 'app-login',
@@ -9,21 +13,15 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   constructor() { }
+  response = '';
+  userdata = {
+    password: '',
+    username: '',
+  };
 
   ngOnInit() {
   }
-
-  response = '';
-  password: string;
-   
-/*
- (keyup)="validate()"
-  validate(){
-    if(this.password.length < 8){
-      this.response = "Password should be at least 8 characters long";
-    }
-    else
-      this.response = '';
-  }
+  get diagnostic() { return JSON.stringify(this.userdata); }
 }
-*/
+
+

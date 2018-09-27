@@ -1,6 +1,6 @@
 .login{
     
-    color: white;
+    color: darkgray;
 }
 .login-page{
     background-color: #fafafa;
@@ -22,6 +22,6 @@
     font-size: 2.5rem;
     text-align: center;
 }
-.btn-pink{
-    background-color: #FF6F91;
+.btn-secondary:disabled{
+    color:whitesmoke;
 }
