@@ -1,9 +1,13 @@
-.ui-sidebar-right {
-    min-height: 100%;
-}
-.ui-sidebar {
-    position: absolute;
+.arrow-content{    
+    font-size: 2rem;
+    cursor: pointer;    
 }
 .content-image{
     max-height: 400px;
+}
+.content-link{
+    cursor: pointer;
+}
+:host >>> .ui-sidebar{
+    overflow: scroll;
 }
