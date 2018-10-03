@@ -15,21 +15,26 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
-     // return of(mockEvents);
-     return this.http.get<Event[]>(this.events_url)
-     .pipe(
-     tap(banners => {
-       this.log('fetched Event');
-       console.log(banners);
-     }),
-     catchError(this.handleError('getEvents', []))
-   );
+    // return of(mockEvents);
+    return this.http.get<Event[]>(this.events_url)
+      .pipe(
+        tap(banners => {
+          this.log('fetched Event');
+          console.log(banners);
+        }),
+        catchError(this.handleError('getEvents', []))
+      );
   }
+
+  getMockEvents(): Observable<Event[]> {
+    return of(mockEvents);
+  }
+
   private log(arg0: string): any {
     console.log(arg0);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
