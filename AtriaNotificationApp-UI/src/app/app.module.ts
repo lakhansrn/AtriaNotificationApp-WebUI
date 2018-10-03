@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -26,6 +27,7 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ContentpageComponent } from './homepage/contentpage/contentpage.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
+    ContentpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
     PanelMenuModule,
     CarouselModule,
     HttpClientModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

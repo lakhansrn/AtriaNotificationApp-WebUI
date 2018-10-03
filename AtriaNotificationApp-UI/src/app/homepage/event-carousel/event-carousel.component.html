@@ -1,8 +1,8 @@
-  <div *ngFor="let event of events;">
+<div *ngFor="let event of events;">
   <div class="mb-4">
     <p-carousel easing="easeOutStrong" [headerText]="event.event_name | titlecase" [value]="event.announcements">
       <ng-template let-announcement pTemplate="item">
-        <div class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">
+        <div (click)="showContent(announcement.content)" class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">
           <div class="ui-grid-row">
             <div class="ui-grid-col-12 text-center">
               <img [src]="announcement.img" style="width: 200px;">
@@ -14,5 +14,5 @@
         </div>
       </ng-template>
     </p-carousel>
-</div>
+  </div>
 </div>

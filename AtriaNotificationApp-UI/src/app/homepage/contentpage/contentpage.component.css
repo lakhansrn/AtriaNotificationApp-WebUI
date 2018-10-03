@@ -1,0 +1,9 @@
+.ui-sidebar-right {
+    min-height: 100%;
+}
+.ui-sidebar {
+    position: absolute;
+}
+.content-image{
+    max-height: 400px;
+}
