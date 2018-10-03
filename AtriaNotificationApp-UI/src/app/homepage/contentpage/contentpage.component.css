@@ -7,3 +7,8 @@
 .content-image{
     max-height: 400px;
 }
+
+.overflowScroll
+{
+    overflow: auto;
+}

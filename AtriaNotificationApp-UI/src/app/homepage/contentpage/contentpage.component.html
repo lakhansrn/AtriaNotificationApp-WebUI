@@ -1,7 +1,7 @@
 <div *ngIf="contentData">
     <div *ngIf="contentData.length > 0">
-        <p-sidebar [(visible)]="display" (onHide)="hideContent()" styleClass="ui-sidebar-md" position="right">
-            <div class="container-fluid">
+        <p-sidebar [(visible)]="display" (onHide)="hideContent()" styleClass="ui-sidebar-md" blockScroll="true" position="right">
+            <div class="container-fluid overflowScroll">
                 <h2 class="text-capitalize">{{contentData[0].title}}</h2>
                 <div class="text-secondary">Posted on {{contentData[0].posted}}</div>
                 <img [src]="contentData[0].image" class="img-fluid mt-2 content-image">
