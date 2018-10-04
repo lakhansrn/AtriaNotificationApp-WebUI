@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsAnnoucementsCreationComponent implements OnInit {
 
+  img_url="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
   constructor() { }
 
   ngOnInit() {

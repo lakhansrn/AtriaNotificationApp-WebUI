@@ -1,3 +1,32 @@
-<p>
-  events-annoucements-creation works!
-</p>
+<form action="/action_page.php" class="event-creation-form container mt-4 card">
+  <div class="form-group">
+    <label class="text-capitalize" for="event_name">event name:</label>
+    <input type="text" class="form-control" id="event_name">
+  </div>
+
+  <div class="form-group">
+    <label class="text-capitalize" for="description">description:</label>
+    <textarea class="form-control" rows="2" id="description"></textarea>
+  </div>
+  <div>
+    <div>Show Banner:</div>
+    <div class="mb-3 mt-1">
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="ShowAsBanner" value="yes" [(ngModel)]="ShowAsBanner" >YES
+        </label>
+      </div>
+      <div class="form-check-inline">
+
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="ShowAsBanner" value="no" [(ngModel)]="ShowAsBanner">NO
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" *ngIf="ShowAsBanner==='yes'">
+      <label class="text-capitalize" for="img"></label>
+      <input type="text" class="form-control" id="img">
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

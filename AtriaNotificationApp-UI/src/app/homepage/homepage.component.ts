@@ -12,5 +12,9 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
   }
 
-  title = 'app';
+  //title = 'app';
+  fun()
+  {
+  return "page";
+  }
 }
