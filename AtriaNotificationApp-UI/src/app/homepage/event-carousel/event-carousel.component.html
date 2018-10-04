@@ -1,5 +1,5 @@
 <div *ngFor="let event of events;">
-  <div class="mb-4">
+  <div class="pb-4">
     <p-carousel easing="easeOutStrong" [headerText]="event.event_name | titlecase" [value]="event.announcements">
       <ng-template let-announcement pTemplate="item">
         <div (click)="showContent(announcement.content)" class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">

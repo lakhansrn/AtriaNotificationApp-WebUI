@@ -34,6 +34,34 @@ export const mockEvents: Event[] = [
               description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nostrum quia quos pos impedit totam!',
               isApproved: true,
               isActive: true
+            },
+            {
+              title: 'Maze builder registration',
+              posted: '2017-02-10',
+              image: 'https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=650&w=940',
+              postedBy: {
+                name: 'Vinutha Yadav',
+                department: 'CSE',
+                email: 'Vinutha@gmail.com',
+                pno: 9972172432
+              },
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nostrum quia quos pos impedit totam!',
+              isApproved: true,
+              isActive: true
+            },
+            {
+              title: 'Maze builder details',
+              posted: '2017-02-10',
+              image: 'https://images.pexels.com/photos/771023/pexels-photo-771023.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+              postedBy: {
+                name: 'Rakshitha C',
+                department: 'CSE',
+                email: 'rakshitha@gmail.com',
+                pno: 9972172432
+              },
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nostrum quia quos pos impedit totam!',
+              isApproved: true,
+              isActive: true
             }
           ]
         },
