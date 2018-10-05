@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import{Event} from '../../models/event.model';
+import{Announcement} from '../../models/announcement.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-events-annoucements-creation',
   templateUrl: './events-annoucements-creation.component.html',
@@ -7,7 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsAnnoucementsCreationComponent implements OnInit {
 
-  img_url="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+  
+
+  eventDetail: Event={
+    event_name: '',
+    event_banner: '',
+    
+    announcements: [{
+      title:'',
+      img:'',
+      description:'',
+      posted:''}
+    ],
+    description: '',
+    showAsBanner: false
+  }
   constructor() { }
 
   ngOnInit() {
