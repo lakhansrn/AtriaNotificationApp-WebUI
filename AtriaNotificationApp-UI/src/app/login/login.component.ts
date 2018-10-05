@@ -1,40 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../model/login.model';
-import { Router } from '@angular/router';
-import { loginData } from './mock-login';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-@Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
-})
+import { AuthenticationService } from '../_services';
+
+@Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = '';
 
-    constructor(private router: Router) { }
-    response = '';
-    userdata: Login = {
-        password: '',
-        username: '',
-    };
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
-    }
-
-    validate() {
-        console.log(123);
-        const islogged = loginData.some(val => {
-            if (val.username === this.userdata.username && val.password === this.userdata.password) {
-                return true;
-            }
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
         });
-        if (islogged === true) {
-            this.response = 'succesfully loggedin';
-            this.router.navigate(['home']);
-        } else {
-            this.response = 'incorrect username or password';
-        }
+
+        // reset login status
+        this.authenticationService.logout();
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
-    get diagnostic() { return JSON.stringify(this.userdata); }
+
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+    }
 }
-
-

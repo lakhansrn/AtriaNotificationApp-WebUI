@@ -4,6 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -25,32 +31,41 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     HomepageComponent,
     NavbarComponent,
     NavbarAsideComponent,
     EventRegistrationComponent,
     AnnouncerComponent,
     WriterComponent,
-    AnnouncementsComponent,    
+    AnnouncementsComponent,
     RegisterWritersComponent,
-    EventsAnnoucementsCreationComponent,    
+    EventsAnnoucementsCreationComponent,
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
-    LoginComponent, 
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CardModule,
-    MenuModule,    
-    PanelMenuModule,  
-    FormsModule,    
+    MenuModule,
+    PanelMenuModule,
+    FormsModule,
+    ReactiveFormsModule,
+        HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
