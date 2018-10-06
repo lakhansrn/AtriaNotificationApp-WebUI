@@ -1,5 +1,5 @@
 <div *ngIf="contentData.length > 0">
-    <p-sidebar [(visible)]="display" (onHide)="hideContent()" styleClass="ui-sidebar-md" position="right">
+    <p-sidebar [(visible)]="display" (onHide)="hideContent()" blockScroll="true" styleClass="ui-sidebar-md" position="right">
         <div class="container-fluid pt-4">
             <div class="d-flex" *ngIf="contentData.length > 1">
                 <div style="flex: 1;">
