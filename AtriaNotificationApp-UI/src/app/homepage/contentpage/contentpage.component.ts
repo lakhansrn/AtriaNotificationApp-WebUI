@@ -1,20 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Content } from '../../model/content.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-contentpage',
   templateUrl: './contentpage.component.html',
   styleUrls: ['./contentpage.component.css']
 })
-export class ContentpageComponent implements OnInit, OnChanges {
+export class ContentpageComponent implements OnInit {
 
-  @Input() contentData;
+  @Input() contents;
   @Input() display;
   @Input() infiniteScroll = true;
+  @Input() current_data;
   @Output() closeContent = new EventEmitter<Boolean>();
-  content_data: Content[];
-  current_data: Content;
-  current_index: number;
+  current_index = 0;
   hideLeftArrow: boolean;
   hideRightArrow: boolean;
 
@@ -26,29 +24,17 @@ export class ContentpageComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    let i = 0;
-    if (changes.contentData) {
-      this.content_data = changes.contentData.currentValue.map(val => {
-        val['id'] = i++;
-        return val;
-      });
-    }
-    this.current_index = 0;
-    this.current_data = this.content_data[this.current_index];
-  }
-
   hideContent() {
-    this.closeContent.emit(this.display);
+    this.closeContent.emit(false);
   }
 
   changeContent(i) {
-    this.current_data = this.content_data[i];
+    this.current_data = this.contents[i];
   }
 
   move(val) {
     if (val >= 1) {
-      if (this.current_index === this.content_data.length - 1) {
+      if (this.current_index === this.contents.length - 1) {
         if (this.infiniteScroll) {
           this.current_index = 0;
         }
@@ -59,7 +45,7 @@ export class ContentpageComponent implements OnInit, OnChanges {
     } else if (val < 1) {
       if (this.current_index === 0) {
         if (this.infiniteScroll) {
-          this.current_index = this.content_data.length - 1;
+          this.current_index = this.contents.length - 1;
         }
       } else {
         this.current_index += val;
@@ -71,7 +57,7 @@ export class ContentpageComponent implements OnInit, OnChanges {
   arrowClass(direction) {
     if (!this.infiniteScroll) {
       if (direction >= 1) {
-        return this.current_index === this.contentData.length - 1;
+        return this.current_index === this.contents.length - 1;
       } else if (direction < 1) {
         return this.current_index === 0;
       }

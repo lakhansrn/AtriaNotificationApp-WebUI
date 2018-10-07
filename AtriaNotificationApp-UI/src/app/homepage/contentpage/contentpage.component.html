@@ -1,10 +1,10 @@
-<div *ngIf="contentData.length > 0">
+<div *ngIf="contents.length > 0">
     <p-sidebar [(visible)]="display" (onHide)="hideContent()" blockScroll="true" styleClass="ui-sidebar-md" position="right">
         <div class="container-fluid pt-4">
-            <div class="d-flex" *ngIf="contentData.length > 1">
+            <div class="d-flex">
                 <div style="flex: 1;">
                     <i class="pi pi-chevron-left arrow-content" [ngClass]="{'d-none': arrowClass(-1)}" (click)="move(-1)"></i>
-                </div>                
+                </div>
                 <i class="pi pi-chevron-right arrow-content" (click)="move(1)" [ngClass]="{'d-none': arrowClass(1)}"></i>
             </div>
             <h2 class="text-capitalize">{{current_data.title}}</h2>
@@ -20,7 +20,7 @@
                     <div><span class="text-primary">{{current_data.postedBy.name}}</span>, {{current_data.postedBy.department}}
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </p-sidebar>
 </div>

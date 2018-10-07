@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../model/event.model';
-import { EventService } from './services/event.service';
+import { AnnouncementService } from './services/announcement.service';
 import { Content } from '../model/content.model';
 
 @Component({
@@ -11,10 +11,11 @@ import { Content } from '../model/content.model';
 export class HomepageComponent implements OnInit {
 
   events: Event[];
-  contentData: Content[];
+  announcementID: string;
+  contents: Content[];
   display: boolean;
 
-  constructor(private eventService: EventService) { }
+  constructor(private announcementService: AnnouncementService) { }
 
   ngOnInit() {
     this.getEvents();
@@ -24,13 +25,17 @@ export class HomepageComponent implements OnInit {
     // this.eventService.getEvents().subscribe(events => this.events = events);
   }
 
-  showContent(content: Content[]) {
-    this.contentData = content;
-    this.display = !this.display;
+  showContent(id: string) {
+    this.announcementID = id;
+    this.announcementService.setAnnouncementID(id);
+    this.announcementService.getContents(this.announcementService.getAnnouncementID()).subscribe(content => {
+      this.contents = content;
+      this.display = true;
+    });
   }
 
-  closeContent(display) {
-    this.display = !this.display;
+  closeContent(val: boolean) {
+    this.display = val;
   }
 
 }

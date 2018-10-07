@@ -6,10 +6,11 @@
     ></app-event-carousel>
   </div>
 </div>
-<div *ngIf="contentData">
+<div *ngIf="contents">
     <app-contentpage
-    [contentData]="contentData"
-    [display]="display"
+    [contents]="contents"
+    [display]="display"    
+    [current_data]="contents[0]"
     (closeContent)="closeContent($event)"
     [infiniteScroll]="false"
     ></app-contentpage>
