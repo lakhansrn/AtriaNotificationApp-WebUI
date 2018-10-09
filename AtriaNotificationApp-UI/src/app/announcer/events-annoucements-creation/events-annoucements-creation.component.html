@@ -1,9 +1,11 @@
 
 {{eventDetail | json}}
-<form action="/action_page.php" class="event-creation-form container mt-4 card">
+<div *ngIf="!eventSubmitted">
+<form action="announcement.php" class="event-creation-form container mt-4 card">
   <div class="form-group">
     <label class="text-capitalize" for="event_name">event name:</label>
-    <input type="text" name="event_name" class="form-control" id="event_name" [(ngModel)]="eventDetail.event_name">
+    <input type="text" name="event_name" class="form-control" id="event_name" [(ngModel)]="eventDetail.event_name"
+    >
   </div>
 
   <div class="form-group">
@@ -21,7 +23,7 @@
       <div class="form-check-inline">
 
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="showAsBanner" value="no" [(ngModel)]="eventDetail.showAsBanner">NO
+          <input type="radio" class="form-check-input" name="showAsBanner" value="no" [(ngModel)]="eventDetail.showAsBanner" checked>NO
         </label>
       </div>
     </div>
@@ -30,5 +32,35 @@
       <label class="text-capitalize" for="img"></label>
       <input type="file"name="event_banner" accept="image/*" id="img" [(ngModel)]="eventDetail.event_banner">
     </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <p>{{eventValidationMessage}}</p>
+  <button type="submit" class="btn btn-primary" (click)="eventSubmit()">Submit</button>
+  
 </form>
+</div>
+
+
+<div *ngIf="eventSubmitted===true">
+
+  <form  class="event-creation-form container mt-4 card">
+        <div class="form-group">
+          <label class="text-capitalize" for="anouncement_title">anouncement_title:</label>
+          <input type="text" class="form-control" id="anouncement_title">
+        </div>
+      
+        <div class="form-group">
+          <label class="text-capitalize" for="anouncement_description">description:</label>
+          <textarea class="form-control" rows="2" id="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="text-capitalize" for="date_of_anouncement">date_of_anouncement:</label>
+          <textarea class="form-control" rows="2" id="date_of_anouncement"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="text-capitalize" for="anouncee_detiles">anouncee_detiles:</label>
+          <textarea class="form-control" rows="2" id="anouncee_detiles"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="eventSubmitted=!eventSubmitted">Back</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+  
+  </form>
+  </div>

@@ -14,7 +14,8 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   eventDetail: Event={
     event_name: '',
     event_banner: '',
-    
+  
+
     announcements: [{
       title:'',
       img:'',
@@ -24,9 +25,31 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     description: '',
     showAsBanner: false
   }
+  eventValidationMessage:string;
+  eventSubmitted:boolean=false;
   constructor() { }
 
   ngOnInit() {
+  }
+  eventSubmit(){
+  
+   if(this.eventDetail.event_name.length<=0 && this.eventDetail.event_banner.length<=0 && this.eventDetail.description.length<=0)
+   {
+    this.eventValidationMessage='fillout all details';
+    //console.log(this.eventValidationMessage);
+    
+   }
+   else if(this.eventDetail.event_name.length<=0)
+   {
+    this.eventValidationMessage='fillout event name details';
+    //console.log(this.eventValidationMessage);
+    
+   }
+   else{
+    this.eventValidationMessage='';
+    this.eventSubmitted=true;
+   }
+
   }
 
 }
