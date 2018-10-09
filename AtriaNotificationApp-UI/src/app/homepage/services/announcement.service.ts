@@ -26,7 +26,7 @@ export class AnnouncementService {
 
   getContents(id: string): Observable<Content[]> {
     // return of(mockEvents);
-    return this.http.get<Content[]>(`${this.url}/api/announcement/${id.toString()}`)
+    return this.http.get<Content[]>(`${this.url}/api/event/Announcement/${id.toString()}/Content`)
       .pipe(
         tap(contents => {
           this.log('fetched Contents');
