@@ -5,13 +5,14 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({templateUrl: 'login.component.html', styleUrls: ['./login.component.css']})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
     error = '';
+    cancelled: any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -55,4 +56,9 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
+onCancel() {
+this.cancelled = true;
+this.router.navigate([this.returnUrl]);
+}
+
 }
