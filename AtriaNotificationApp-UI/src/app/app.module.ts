@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'primeng/sidebar';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -28,6 +31,8 @@ import { EventCarouselComponent } from './homepage/event-carousel/event-carousel
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContentpageComponent } from './homepage/contentpage/contentpage.component';
+import { FormsModule } from '@angular/forms';
+import { FilterEventsComponent } from './writer/filter-events/filter-events.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,7 @@ import { ContentpageComponent } from './homepage/contentpage/contentpage.compone
     EventCarouselComponent,
     BannerComponent,
     ContentpageComponent,
+    FilterEventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,11 @@ import { ContentpageComponent } from './homepage/contentpage/contentpage.compone
     CarouselModule,
     HttpClientModule,
     NgbCarouselModule,
-    SidebarModule
+    SidebarModule,
+    FormsModule,
+    LMarkdownEditorModule,
+    MarkdownModule.forRoot(),
+    AutoCompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
