@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -10,6 +11,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarModule } from 'primeng/sidebar';
+
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -20,6 +25,7 @@ import { AnnouncerComponent } from './announcer/announcer.component';
 import { WriterComponent } from './writer/writer.component';
 import { MenuModule } from 'primeng/menu';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { CarouselModule } from 'primeng/carousel';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { RegisterWritersComponent } from './announcer/register-writers/register-writers.component';
 import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
@@ -28,6 +34,10 @@ import { ContentCreationComponent } from './writer/content-creation/content-crea
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
+import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
+import { BannerComponent } from './homepage/banner/banner.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ContentpageComponent } from './homepage/contentpage/contentpage.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +56,9 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     SendApprovalComponent,
     PreviewContentComponent,
     LoginComponent,
+    EventCarouselComponent,
+    BannerComponent,
+    ContentpageComponent,
 
   ],
   imports: [
@@ -64,7 +77,11 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    CarouselModule,
+    HttpClientModule,
+    NgbCarouselModule,
+    SidebarModule
   ],
   bootstrap: [AppComponent]
 })
