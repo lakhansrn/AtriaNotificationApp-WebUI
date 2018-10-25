@@ -3,8 +3,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'primeng/sidebar';
+
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -49,6 +59,7 @@ import { ContentpageComponent } from './homepage/contentpage/contentpage.compone
     EventCarouselComponent,
     BannerComponent,
     ContentpageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,12 +68,21 @@ import { ContentpageComponent } from './homepage/contentpage/contentpage.compone
     CardModule,
     MenuModule,
     PanelMenuModule,
+    FormsModule,
+    ReactiveFormsModule,
+        HttpClientModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider,
     CarouselModule,
     HttpClientModule,
     NgbCarouselModule,
     SidebarModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
