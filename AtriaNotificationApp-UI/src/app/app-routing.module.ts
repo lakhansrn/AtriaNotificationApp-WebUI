@@ -11,7 +11,7 @@ import { ApproveContentComponent } from './announcer/approve-content/approve-con
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
-import { AuthGuard } from './_guards';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },
