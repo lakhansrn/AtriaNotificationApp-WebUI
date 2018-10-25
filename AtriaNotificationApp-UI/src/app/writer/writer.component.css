@@ -21,6 +21,3 @@ body .ui-widget-content p{
     line-height: 2;
     margin-bottom: 1rem;
 }
-:host >>> .ui-sidebar{
-    overflow: scroll;
-}

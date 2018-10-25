@@ -2,31 +2,27 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Event } from '../../model/event.model';
-import { Content } from '../../model/content.model';
-import { EventAnnouncementID } from '../models/event-announcement-id.model';
-import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class ImageUploadService {
+
+  private uploadPreset = 'k7kv3x7e';
+  private cloudName = 'drvpgz7gl';
+  private secureUrl = `https://api.cloudinary.com/v1_1/${this.cloudName}/upload`;
 
   constructor(private http: HttpClient) { }
 
-  getEvents() {
-    return this.http.get<Event[]>(`${environment.apiEndPoint}/api/event`)
+  uploadImage(file: File) {
+    const headers = new HttpHeaders({ 'X-Requested-With': 'XMLHttpRequest' });
+    const options = { headers: headers };
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', this.uploadPreset);
+    return this.http.post(this.secureUrl, fd, options)
     .pipe(
-      catchError(this.handleError('getEvents', []))
-    );
-  }
-
-  postContent(event_announcement_id: EventAnnouncementID, content: Content) {
-    const event_id = event_announcement_id.event_id;
-    const announcement_id = event_announcement_id.announcement_id;
-    return this.http.post(`${environment.apiEndPoint}/api/event/${event_id}/announcement/${announcement_id}/content`, content)
-    .pipe(
-      catchError(this.handleError('postContent', []))
+      catchError(this.handleError('uploadImage', []))
     );
   }
 

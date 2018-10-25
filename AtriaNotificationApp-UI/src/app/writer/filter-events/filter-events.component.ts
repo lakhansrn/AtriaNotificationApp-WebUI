@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Event } from '../../model/event.model';
 import { EventService } from '../services/event.service';
 import { Announcement } from '../../model/announcement.model';
+import { EventAnnouncementID } from '../models/event-announcement-id.model';
 
 @Component({
   selector: 'app-filter-events',
@@ -20,7 +21,7 @@ export class FilterEventsComponent implements OnInit {
   announcement_suggestions: Announcement[];
 
   // holds event and announcement ids
-  event_announcement_id = {
+  event_announcement_id: EventAnnouncementID = {
     event_id: '',
     announcement_id: ''
   };

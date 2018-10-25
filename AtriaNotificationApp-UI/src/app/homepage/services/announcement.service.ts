@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Content } from '../../model/content.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnnouncementService {
-
-  private local_url = 'http://localhost:50831';
-  private url = 'https://atrianotificationrestapi.azurewebsites.net';
 
   private announcementID: string;
 
@@ -26,7 +23,7 @@ export class AnnouncementService {
 
   getContents(id: string): Observable<Content[]> {
     // return of(mockEvents);
-    return this.http.get<Content[]>(`${this.url}/api/event/Announcement/${id.toString()}/Content`)
+    return this.http.get<Content[]>(`${environment.apiEndPoint}/api/event/Announcement/${id.toString()}/Content`)
       .pipe(
         tap(contents => {
           this.log('fetched Contents');

@@ -1,0 +1,33 @@
+<div *ngIf="contents.length > 0">
+  <p-sidebar [(visible)]="display" (onHide)="hideContent()" blockScroll="true" styleClass="ui-sidebar-md" position="right">
+    <div class="container-fluid pt-4 pb-2">
+      <div class="d-flex">
+        <div style="flex: 1;">
+          <i class="pi pi-chevron-left arrow-content" [ngClass]="{'d-none': arrowClass(-1)}" (click)="move(-1)"></i>
+        </div>
+        <i class="pi pi-chevron-right arrow-content" (click)="move(1)" [ngClass]="{'d-none': arrowClass(1)}"></i>
+      </div>
+      <h2 class="text-capitalize">{{current_data.title}}</h2>
+      <div class="text-secondary">Posted on {{current_data.posted}}</div>
+      <div *ngIf="current_data.image">
+        <img [src]="current_data.image" class="img-fluid mt-2 content-image">
+      </div>
+      <div *ngIf="preview_image">
+        <img [src]="preview_image" alt="preview_image" class="img-fluid mt-2 content-image">
+      </div>
+      <div class="my-4">
+        <div markdown [data]="current_data.description"></div>
+      </div>
+      <div class="d-flex">
+        <div>
+          <img [src]="profile_icon" width="50" height="50">
+        </div>
+        <div class="mt-1 ml-2">
+          <div>Written By</div>
+          <div><span class="text-primary text-capitalize">{{current_data.postedBy.name}}</span>, {{current_data.postedBy.department}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-sidebar>
+</div>

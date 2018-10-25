@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { Event } from '../../model/event.model';
 import { Observable, of } from 'rxjs';
 import { mockEvents } from '../mock-events';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  private url = 'https://atrianotificationrestapi.azurewebsites.net';
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
     // return of(mockEvents);
-    return this.http.get<Event[]>(`${this.url}/api/event`)
+    return this.http.get<Event[]>(`${environment.apiEndPoint}/api/event`)
       .pipe(
         tap(banners => {
           this.log('fetched Event');

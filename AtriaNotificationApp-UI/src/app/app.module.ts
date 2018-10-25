@@ -26,13 +26,12 @@ import { ApproveContentComponent } from './announcer/approve-content/approve-con
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
-import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ContentpageComponent } from './homepage/contentpage/contentpage.component';
 import { FormsModule } from '@angular/forms';
 import { FilterEventsComponent } from './writer/filter-events/filter-events.component';
+import { ContentSidebarComponent } from './components/content-sidebar/content-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -49,12 +48,11 @@ import { FilterEventsComponent } from './writer/filter-events/filter-events.comp
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
-    PreviewContentComponent,
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    ContentpageComponent,
     FilterEventsComponent,
+    ContentSidebarComponent,
   ],
   imports: [
     BrowserModule,

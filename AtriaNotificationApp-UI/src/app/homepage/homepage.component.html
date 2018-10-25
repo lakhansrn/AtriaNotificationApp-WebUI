@@ -7,11 +7,11 @@
   </div>
 </div>
 <div *ngIf="contents">
-    <app-contentpage
+    <app-content-sidebar
     [contents]="contents"
     [display]="display"    
     [current_data]="contents[0]"
     (closeContent)="closeContent($event)"
     [infiniteScroll]="false"
-    ></app-contentpage>
+    ></app-content-sidebar>
 </div>
