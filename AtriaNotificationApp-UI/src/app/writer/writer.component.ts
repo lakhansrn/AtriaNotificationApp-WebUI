@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Content } from '../model/content.model';
 import { ImageUploadService } from './services/image-upload.service';
 import { EventService } from './services/event.service';
@@ -26,6 +26,7 @@ export class WriterComponent implements OnInit {
   };
 
   @Input() event_announcement_id;
+  @Output() clearInputChoices = new EventEmitter();
 
   preview_image: string;
   showPreview = false;
@@ -58,16 +59,27 @@ export class WriterComponent implements OnInit {
           img_path = res['secure_url'];
           this.content.image = img_path;
           this.eventService.postContent(this.event_announcement_id, this.content)
-            .subscribe(result => console.log(result));
+            .subscribe(result => {
+              alert('Content Posted');
+              this.clearInputs();
+            });
         } else {
           alert('There was an error while uploading image');
         }
       });
   }
 
+  clearInputs() {
+    this.content.image = '';
+    this.content.description = '';
+    this.content.title = '';
+    this.clearInputChoices.emit();
+  }
+
   closeContent(val: boolean) {
     this.showPreview = val;
   }
+
 
   temp_guid() {
     function s4() {

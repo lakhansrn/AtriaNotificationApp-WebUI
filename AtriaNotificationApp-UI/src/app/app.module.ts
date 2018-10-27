@@ -30,7 +30,6 @@ import { EventCarouselComponent } from './homepage/event-carousel/event-carousel
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FilterEventsComponent } from './writer/filter-events/filter-events.component';
 import { ContentSidebarComponent } from './components/content-sidebar/content-sidebar.component';
 
 @NgModule({
@@ -51,7 +50,6 @@ import { ContentSidebarComponent } from './components/content-sidebar/content-si
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    FilterEventsComponent,
     ContentSidebarComponent,
   ],
   imports: [
