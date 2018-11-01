@@ -21,10 +21,31 @@ export class EventService {
     );
   }
 
+  getContents(id: string): Observable<Content[]> {
+    return this.http.get<Content[]>(`${environment.apiEndPoint}/api/event/Announcement/${id.toString()}/Content`)
+      .pipe(
+        tap(contents => {
+          this.log('fetched Contents');
+          console.log(contents);
+        }),
+        catchError(this.handleError('getContents', []))
+      );
+  }
+
   postContent(event_announcement_id: EventAnnouncementID, content: Content) {
     const event_id = event_announcement_id.event_id;
     const announcement_id = event_announcement_id.announcement_id;
     return this.http.post(`${environment.apiEndPoint}/api/event/${event_id}/announcement/${announcement_id}/content`, content)
+    .pipe(
+      catchError(this.handleError('postContent', []))
+    );
+  }
+
+  updateContent(event_announcement_id: EventAnnouncementID, content: Content) {
+    const event_id = event_announcement_id.event_id;
+    const announcement_id = event_announcement_id.announcement_id;
+    const content_id = event_announcement_id.content_id;
+    return this.http.put(`${environment.apiEndPoint}/api/event/${event_id}/announcement/${announcement_id}/content/${content_id}`, content)
     .pipe(
       catchError(this.handleError('postContent', []))
     );

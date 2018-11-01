@@ -9,7 +9,9 @@ import { EventService } from './services/event.service';
   styleUrls: ['./writer.component.css']
 })
 export class WriterComponent implements OnInit {
-  content: Content = {
+  user_content: Content;
+  empty_content: Content = {
+    id: this.temp_guid(),
     title: '',
     posted: new Date(),
     image: '',
@@ -26,6 +28,10 @@ export class WriterComponent implements OnInit {
   };
 
   @Input() event_announcement_id;
+  @Input() set content(content: Content) {
+    this.user_content = content || this.empty_content;
+  }
+  @Input() edit = false;
   @Output() clearInputChoices = new EventEmitter();
 
   preview_image: string;
@@ -52,34 +58,49 @@ export class WriterComponent implements OnInit {
   }
 
   submitContent() {
-    let img_path = null;
-    this.imageUploadService.uploadImage(this.image_file)
-      .subscribe(res => {
-        if (res['secure_url']) {
-          img_path = res['secure_url'];
-          this.content.image = img_path;
-          this.eventService.postContent(this.event_announcement_id, this.content)
-            .subscribe(result => {
-              alert('Content Posted');
-              this.clearInputs();
-            });
-        } else {
-          alert('There was an error while uploading image');
-        }
+    const upload = (uploadContent) => {
+      let img_path = null;
+      this.imageUploadService.uploadImage(this.image_file)
+        .subscribe(res => {
+          if (res['secure_url']) {
+            img_path = res['secure_url'];
+            this.user_content.image = img_path;
+            uploadContent();
+          } else {
+            alert('There was an error while uploading image');
+          }
+        });
+    };
+
+    if (this.edit) {
+      if (this.preview_image) {
+        upload(this.updateContentRequest.bind(this));
+      } else {
+        this.updateContentRequest();
+      }
+    } else {
+      upload(this.postContentRequest.bind(this));
+    }
+  }
+
+  postContentRequest() {
+    this.eventService.postContent(this.event_announcement_id, this.user_content)
+      .subscribe(result => {
+        alert('Content Posted');
+        this.user_content = null;
       });
   }
 
-  clearInputs() {
-    this.content.image = '';
-    this.content.description = '';
-    this.content.title = '';
-    this.clearInputChoices.emit();
+  updateContentRequest() {
+    this.eventService.updateContent(this.event_announcement_id, this.user_content)
+    .subscribe(result => {
+      alert('Content Updated');
+    });
   }
 
   closeContent(val: boolean) {
     this.showPreview = val;
   }
-
 
   temp_guid() {
     function s4() {

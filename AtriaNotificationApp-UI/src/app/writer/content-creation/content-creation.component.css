@@ -1,3 +1,7 @@
 .content-creation > div{
     margin-bottom: 20px;
 }
+button{
+    display: flex;
+    align-items: center;
+}
