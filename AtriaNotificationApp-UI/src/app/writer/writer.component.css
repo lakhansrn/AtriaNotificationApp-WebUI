@@ -1,0 +1,23 @@
+.form-bar{
+    border: 1px solid rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+.form-bar:nth-of-type(2){
+    border-top: 0;
+    border-bottom: 0;
+}
+.form-bar label{
+    width: 40px;
+    margin: 0;
+}
+.form-bar input {
+    max-width: 350px;
+    margin-left: 15px;
+}
+body .ui-widget-content p{
+    line-height: 2;
+    margin-bottom: 1rem;
+}

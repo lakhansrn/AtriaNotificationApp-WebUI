@@ -1,16 +1,18 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-contentpage',
-  templateUrl: './contentpage.component.html',
-  styleUrls: ['./contentpage.component.css']
+  selector: 'app-content-sidebar',
+  templateUrl: './content-sidebar.component.html',
+  styleUrls: ['./content-sidebar.component.css']
 })
-export class ContentpageComponent implements OnInit {
+export class ContentSidebarComponent implements OnInit {
 
   @Input() contents;
   @Input() display;
   @Input() infiniteScroll = true;
   @Input() current_data;
+  // preview_image used only for showing live preview when uploaded in UI
+  @Input() preview_image;
   @Output() closeContent = new EventEmitter<Boolean>();
   current_index = 0;
   hideLeftArrow: boolean;
@@ -63,4 +65,5 @@ export class ContentpageComponent implements OnInit {
       }
     }
   }
+
 }

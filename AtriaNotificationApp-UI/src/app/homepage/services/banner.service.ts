@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Banner } from '../banner/banner.model';
-
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BannerService {
 
-  private banners_url = 'https://atrianotificationrestapi.azurewebsites.net/api/banner';
+  private banners_url = `${environment.apiEndPoint}/api/banner`;
   constructor(private http: HttpClient) { }
   getBanners(): Observable<Banner[]> {
     // return of(mockEvents);

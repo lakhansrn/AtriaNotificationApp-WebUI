@@ -1,3 +1,74 @@
-<p>
-  content-creation works!
-</p>
+<div class="container pt-4 content-creation">
+    <div *ngIf="event_suggestions">
+        <div>
+            <label>Choose Event:</label>
+        </div>
+        
+        <p-autoComplete 
+        [(ngModel)]="event" [suggestions]="event_suggestions" 
+        (completeMethod)="searchEvent($event)"
+        [dropdown]="true"
+        field="event_name"
+        [size]="25"
+        [inputStyle]="{'padding': '0.42em', 'text-transform': 'capitalize'}"
+        [style]="{'text-transform': 'capitalize'}"
+        (onSelect)="chooseEvent()"></p-autoComplete>
+    </div>
+
+    <div *ngIf="all_announcement">
+        <div *ngIf="all_announcement.length > 0">
+            <div>
+                <label>Choose Announcement:</label>
+            </div>
+            <p-autoComplete 
+            [(ngModel)]="announcement" [suggestions]="announcement_suggestions" 
+            (completeMethod)="searchAnnouncement($event)"
+            [dropdown]="true"
+            field="title"
+            [size]="25"
+            [inputStyle]="{'padding': '0.42em', 'text-transform': 'capitalize'}"
+            [style]="{'text-transform': 'capitalize'}"
+            (onSelect)="chooseAnnouncement()"></p-autoComplete>
+        </div>
+    </div>
+
+    <div *ngIf="all_content">
+        <div *ngIf="all_content.length > 0">
+            <div>
+                <label>Choose Content:</label>
+            </div>
+            <p-autoComplete 
+            [(ngModel)]="content" [suggestions]="content_suggestions" 
+            (completeMethod)="searchContent($event)"
+            [dropdown]="true"
+            field="title"
+            [size]="25"
+            [inputStyle]="{'padding': '0.42em', 'text-transform': 'capitalize'}"
+            [style]="{'text-transform': 'capitalize'}"
+            (onSelect)="chooseContent()"></p-autoComplete>
+        </div>
+    </div>
+
+    <div *ngIf="event_announcement_id.announcement_id">
+        <div class="d-flex">
+            <button class="btn btn-primary btn-sm" (click)="addContent()">
+                New Content <i class="pi pi-plus-circle ml-1"></i>
+            </button>
+            <button class="btn btn-danger btn-sm ml-2" 
+            *ngIf="showContentPanel"
+            (click)="showContentPanel = false">
+                Close Panel <i class="pi pi-times ml-1"></i>
+            </button> 
+        </div>
+    </div>
+
+    <div *ngIf="showContentPanel">   
+        <app-writer
+        [edit]="editable"
+        [content]="content"
+        [event_announcement_id]="event_announcement_id"></app-writer>
+    </div>
+    
+</div>
+
+

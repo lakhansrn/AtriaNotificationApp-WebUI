@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentpageComponent } from './contentpage.component';
+import { ContentSidebarComponent } from './content-sidebar.component';
 
-describe('ContentpageComponent', () => {
-  let component: ContentpageComponent;
-  let fixture: ComponentFixture<ContentpageComponent>;
+describe('ContentSidebarComponent', () => {
+  let component: ContentSidebarComponent;
+  let fixture: ComponentFixture<ContentSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContentpageComponent ]
+      declarations: [ ContentSidebarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentpageComponent);
+    fixture = TestBed.createComponent(ContentSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

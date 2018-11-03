@@ -9,7 +9,6 @@ import { RegisterWritersComponent } from './announcer/register-writers/register-
 import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
 import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
-import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { AuthGuard } from './_guards';
 const routes: Routes = [
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'eventCreation', component: EventsAnnoucementsCreationComponent },
   { path: 'approveContents', component: ApproveContentComponent },
   { path: 'contentCreation', component: ContentCreationComponent },
-  { path: 'previewContent', component: PreviewContentComponent },
   { path: 'sendapproval', component: SendApprovalComponent },
 ];
 

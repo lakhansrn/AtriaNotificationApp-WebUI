@@ -25,6 +25,8 @@
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "ngx-markdown": "^6.3.0",
+    "ngx-markdown-editor": "^1.1.7",
     "primeicons": "^1.0.0-beta.10",
     "primeng": "^6.1.0",
     "restore": "^0.3.0",

@@ -3,7 +3,7 @@ import { Announcer } from './announcer.model';
 export class Content {
     id: string;
     title: string;
-    posted: string;
+    posted: Date;
     image: string;
     postedBy: Announcer;
     description: string;

@@ -1,42 +1,45 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./app-routing.module";
-import { CardModule } from "primeng/card";
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
-import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ContentSidebarComponent } from './components/content-sidebar/content-sidebar.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { CardModule } from 'primeng/card';
+
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from "./_helpers";
-import { JwtInterceptor, ErrorInterceptor } from "./_helpers";
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
-import { NgbCarouselModule } from "@ng-bootstrap/ng-bootstrap";
-import { SidebarModule } from "primeng/sidebar";
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarModule } from 'primeng/sidebar';
 
-import { AppComponent } from "./app.component";
-import { HomepageComponent } from "./homepage/homepage.component";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { NavbarAsideComponent } from "./navbar/navbar-aside/navbar-aside.component";
-import { EventRegistrationComponent } from "./event-registration/event-registration.component";
-import { AnnouncerComponent } from "./announcer/announcer.component";
-import { WriterComponent } from "./writer/writer.component";
-import { MenuModule } from "primeng/menu";
-import { PanelMenuModule } from "primeng/panelmenu";
-import { CarouselModule } from "primeng/carousel";
-import { AnnouncementsComponent } from "./announcements/announcements.component";
-import { RegisterWritersComponent } from "./announcer/register-writers/register-writers.component";
-import { EventsAnnoucementsCreationComponent } from "./announcer/events-annoucements-creation/events-annoucements-creation.component";
-import { ApproveContentComponent } from "./announcer/approve-content/approve-content.component";
-import { ContentCreationComponent } from "./writer/content-creation/content-creation.component";
-import { SendApprovalComponent } from "./writer/send-approval/send-approval.component";
-import { LoginComponent } from "./login/login.component";
-import { PreviewContentComponent } from "./writer/preview-content/preview-content.component";
-import { EventCarouselComponent } from "./homepage/event-carousel/event-carousel.component";
-import { BannerComponent } from "./homepage/banner/banner.component";
-import { HttpClientModule } from "@angular/common/http";
-import { ContentpageComponent } from "./homepage/contentpage/contentpage.component";
+import { AppComponent } from './app.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarAsideComponent } from './navbar/navbar-aside/navbar-aside.component';
+import { EventRegistrationComponent } from './event-registration/event-registration.component';
+import { AnnouncerComponent } from './announcer/announcer.component';
+import { WriterComponent } from './writer/writer.component';
+import { MenuModule } from 'primeng/menu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { CarouselModule } from 'primeng/carousel';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { RegisterWritersComponent } from './announcer/register-writers/register-writers.component';
+import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
+import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
+import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
+import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
+import { LoginComponent } from './login/login.component';
+import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
+import { BannerComponent } from './homepage/banner/banner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -53,11 +56,10 @@ import { ContentpageComponent } from "./homepage/contentpage/contentpage.compone
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
-    PreviewContentComponent,
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    ContentpageComponent
+    ContentSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,9 @@ import { ContentpageComponent } from "./homepage/contentpage/contentpage.compone
     NgbCarouselModule,
     SidebarModule,
     FormsModule,
+    LMarkdownEditorModule,
+    MarkdownModule.forRoot(),
+    AutoCompleteModule,
     ReactiveFormsModule
   ],
   providers: [

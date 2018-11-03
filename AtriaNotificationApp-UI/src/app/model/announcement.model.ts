@@ -1,5 +1,5 @@
 export class Announcement {
-    id: string[];
+    id: string;
     title: string;
     img: string;
     description: string;
