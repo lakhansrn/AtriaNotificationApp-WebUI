@@ -10,7 +10,7 @@ import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucem
 import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
-
+import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },

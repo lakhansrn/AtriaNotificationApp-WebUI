@@ -1,13 +1,24 @@
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
+import { ContentSidebarComponent } from './components/content-sidebar/content-sidebar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'primeng/sidebar';
-import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-import { MarkdownModule } from 'ngx-markdown';
-import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -29,8 +40,6 @@ import { LoginComponent } from './login/login.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { ContentSidebarComponent } from './components/content-sidebar/content-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +59,7 @@ import { ContentSidebarComponent } from './components/content-sidebar/content-si
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    ContentSidebarComponent,
+    ContentSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +76,15 @@ import { ContentSidebarComponent } from './components/content-sidebar/content-si
     LMarkdownEditorModule,
     MarkdownModule.forRoot(),
     AutoCompleteModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
