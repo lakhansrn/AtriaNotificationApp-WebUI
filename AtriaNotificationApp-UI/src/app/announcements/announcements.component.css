@@ -1,0 +1,18 @@
+.event-creation-form{
+    max-width: 500px;
+    border:1px solid lightgray;
+    
+}
+.event-title{
+    background-color: lightblue;
+    text-align: center;
+    
+}
+.button-container{
+    justify-content: center;
+    
+
+}
+.btn-large{a
+    width:90px;
+}
