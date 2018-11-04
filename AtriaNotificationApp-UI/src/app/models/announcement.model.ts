@@ -1,6 +1,6 @@
 export class Announcement {
     title: string;
-    img: string;
+    image: string;
     description: string;
     posted: string;
 }

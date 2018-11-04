@@ -22,6 +22,7 @@ import { ContentCreationComponent } from './writer/content-creation/content-crea
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
 import { PreviewContentComponent } from './writer/preview-content/preview-content.component';
+import { AnnouncementCreationComponent } from './announcer/events-annoucements-creation/announcement-creation/announcement-creation.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PreviewContentComponent } from './writer/preview-content/preview-conten
     ContentCreationComponent,
     SendApprovalComponent,
     PreviewContentComponent,
-    LoginComponent,    
+    LoginComponent, 
+    AnnouncementCreationComponent  
   ],
   imports: [
     BrowserModule,

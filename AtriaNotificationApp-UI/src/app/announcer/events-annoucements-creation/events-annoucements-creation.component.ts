@@ -16,20 +16,20 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     event_banner: '',
   
 
-    announcements: [{
-      title:'',
-      img:'',
-      description:'',
-      posted:''}
+    announcements:[ 
     ],
     description: '',
     showAsBanner: false
   }
   eventValidationMessage:string;
   eventSubmitted:boolean=false;
+  descriptionSubmitted:boolean=false;
   constructor() { }
 
   ngOnInit() {
+  }
+  back(e){
+    this.eventSubmitted=!e;
   }
   eventSubmit(){
   
@@ -45,6 +45,21 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     //console.log(this.eventValidationMessage);
     
    }
+   else if(this.eventDetail.showAsBanner===true)
+   {
+    if(this.eventDetail.event_banner.length<=0)
+   {
+    this.eventValidationMessage='banner not selected';
+    //console.log(this.eventValidationMessage);
+    
+   }
+  }
+   else if(this.eventDetail.description.length<=0)
+   {
+    this.eventValidationMessage='fillout description';
+    //console.log(this.eventValidationMessage);
+    
+   }
    else{
     this.eventValidationMessage='';
     this.eventSubmitted=true;
@@ -52,4 +67,5 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
 
   }
 
+   
 }
