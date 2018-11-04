@@ -10,7 +10,9 @@ export class NavbarAsideComponent implements OnInit {
   constructor() { }
 
   @Input() masked;
+  @Input() isLoggedIn;
   @Output() maskedToggle = new EventEmitter<boolean>();
+
   ngOnInit() {
   }
 

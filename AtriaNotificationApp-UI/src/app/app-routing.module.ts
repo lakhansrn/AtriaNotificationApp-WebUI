@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { EventRegistrationComponent } from './event-registration/event-registration.component';
 import { LoginComponent } from './login/login.component';
@@ -11,6 +11,7 @@ import { ApproveContentComponent } from './announcer/approve-content/approve-con
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { AuthGuard } from './_guards';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },
@@ -18,10 +19,10 @@ const routes: Routes = [
   { path: 'eventRegister', component: EventRegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registerWriters', component: RegisterWritersComponent },
-  { path: 'eventCreation', component: EventsAnnoucementsCreationComponent },
-  { path: 'approveContents', component: ApproveContentComponent },
-  { path: 'contentCreation', component: ContentCreationComponent },
-  { path: 'sendapproval', component: SendApprovalComponent },
+  { path: 'eventCreation', component: EventsAnnoucementsCreationComponent, canActivate: [AuthGuard] },
+  { path: 'approveContents', component: ApproveContentComponent, canActivate: [AuthGuard] },
+  { path: 'contentCreation', component: ContentCreationComponent, canActivate: [AuthGuard] },
+  { path: 'sendapproval', component: SendApprovalComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
