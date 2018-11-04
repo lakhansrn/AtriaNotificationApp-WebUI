@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NavbarService } from '../navbar/navbar.service';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private navbarService: NavbarService
+        private navbarService: NavbarService,
+        private authenticationService: AuthenticationService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (localStorage.getItem('currentUser')) {
-            // logged in so return true
+        if (this.authenticationService.isAuthenticated()) {
             return true;
         }
 
-
         // not logged in so redirect to login page with the return url
         // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-        this.navbarService.login();
+        // this.navbarService.login();
+        this.router.navigate(['/404']);
         return false;
     }
 }

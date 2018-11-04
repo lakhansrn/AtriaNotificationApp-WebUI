@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.loading = !this.loading;
+                    this.loginForm.reset();
                     this.router.navigate([this.returnUrl]);
                     this.display = !this.display;
                 },

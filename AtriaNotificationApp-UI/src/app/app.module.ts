@@ -41,6 +41,7 @@ import { LoginComponent } from './login/login.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    ContentSidebarComponent
+    ContentSidebarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
