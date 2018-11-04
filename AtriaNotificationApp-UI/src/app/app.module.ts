@@ -19,6 +19,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -76,14 +77,14 @@ import { HttpClientModule } from '@angular/common/http';
     LMarkdownEditorModule,
     MarkdownModule.forRoot(),
     AutoCompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
     // provider used to create fake backend
-    fakeBackendProvider
+
   ],
   bootstrap: [AppComponent]
 })
