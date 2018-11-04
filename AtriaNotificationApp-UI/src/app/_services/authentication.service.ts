@@ -6,9 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        const user = localStorage.getItem('currentUser');
+        const isLogged = user ? true : false;
+        this.loggedIn.next(isLogged);
+    }
 
-    public loggedIn = new BehaviorSubject<boolean>(false);
+    private loggedIn = new BehaviorSubject<boolean>(false);
     public login$ = this.loggedIn.asObservable();
 
     login(email: string, password: string) {
