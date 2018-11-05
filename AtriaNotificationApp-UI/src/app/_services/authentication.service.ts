@@ -15,7 +15,7 @@ export class AuthenticationService {
             this.isRoleAnnouncer.next(this.isAnnouncer());
         }
 
-    public loggedIn = new BehaviorSubject<boolean>(false);
+    private loggedIn = new BehaviorSubject<boolean>(false);
     public login$ = this.loggedIn.asObservable();
 
     private isRoleAnnouncer = new BehaviorSubject<boolean>(false);

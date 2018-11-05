@@ -2,7 +2,7 @@
 
 1.Open in VSCode (if angularCLI is not set the first time then u need to do it.)
 
-2.Open terminal under AtrianotificationApp-UI folder => type "npm intall"
+2.Open terminal under AtrianotificationApp-UI folder => type "npm install"
 
 3. To build it run "ng build"
 
