@@ -38,6 +38,7 @@ import { ApproveContentComponent } from './announcer/approve-content/approve-con
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
+// tslint:disable-next-line:max-line-length
 import { AnnouncementCreationComponent } from './announcer/events-annoucements-creation/announcement-creation/announcement-creation.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
@@ -59,8 +60,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
-    LoginComponent, 
-    AnnouncementCreationComponent  
+    LoginComponent,
+    AnnouncementCreationComponent,
     EventCarouselComponent,
     BannerComponent,
     ContentSidebarComponent,
