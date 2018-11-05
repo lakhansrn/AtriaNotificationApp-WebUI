@@ -1,0 +1,53 @@
+{{announments | json}}
+<div *ngIf="!announcementSubmitted">
+  <form class="event-creation-form container px-0 my-3 pb-3 card">
+  <div>
+    <h2 class="event-title p-3">
+      ANNOUNCEMENT</h2>
+  </div>
+  <br>
+  <div class="container">
+    <div class="form-group">
+      <label class="text-capitalize" for="anouncement_title" >anouncement_title:</label>
+      <input type="text" class="form-control" [(ngModel)]="announcements.title" name="annouuncement_title" id="anouncement_title" placeholder="enter announcement title">
+    </div>
+    <div>
+      <div>Image:</div>
+      <div class="mb-3 mt-1">
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="image" [value]="true" [(ngModel)]="announcementImageSelection">YES
+          </label>
+        </div>
+        <div class="form-check-inline">
+
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="image" [value]="false" [(ngModel)]="announcementImageSelection" >NO
+          </label>
+        </div>
+      </div>
+    </div>
+     <div class="form-group" *ngIf="announcementImageSelection===true">
+      <label class="text-capitalize" for="image"></label>
+      <input type="file" name="img" multiple="multiple" accept="image/*"[(ngModel)]="announcements.image">
+    </div> 
+
+
+
+
+    
+    <div class="form-group">
+      <label class="text-capitalize" for="descriptiont">description :
+      </label>
+      <textarea class="form-control" rows="2"  name="description"  [(ngModel)]="announcements.description" placeholder="enter description"></textarea>
+    </div>
+    
+    <div class="form-check-inline container button-container">
+        <p class="text-danger">{{announcementValidationMessage}}</p>
+      <button type="button" class="btn btn-primary  btn-large" (click)="back()">goBack</button>
+      <button type="submit" class="btn btn-primary btn-large ml-5" (click)="announcementSubmit()">Submit</button>
+
+
+    </div>
+  </div>
+</form>

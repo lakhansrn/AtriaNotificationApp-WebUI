@@ -38,6 +38,7 @@ import { ApproveContentComponent } from './announcer/approve-content/approve-con
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
+import { AnnouncementCreationComponent } from './announcer/events-annoucements-creation/announcement-creation/announcement-creation.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -58,7 +59,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
-    LoginComponent,
+    LoginComponent, 
+    AnnouncementCreationComponent  
     EventCarouselComponent,
     BannerComponent,
     ContentSidebarComponent,
@@ -67,6 +69,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     CardModule,
     MenuModule,
