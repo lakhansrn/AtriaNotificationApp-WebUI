@@ -1,0 +1,18 @@
+<div *ngFor="let event of events;">
+  <div class="pb-4">
+    <p-carousel easing="easeOutStrong" [headerText]="event.event_name | titlecase" [value]="event.announcements">
+      <ng-template let-announcement pTemplate="item">
+        <div (click)="showContent(announcement.id)" class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12 text-center">
+              <img [src]="announcement.img" style="width: 200px;">
+            </div>
+          </div>
+          <div class="ui-grid-row" style="text-align: center; font-size: 1.5rem; text-transform: capitalize; padding-top: 10px;">     
+            <div class="ui-grid-col-12">{{announcement.title}}</div>
+          </div>        
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

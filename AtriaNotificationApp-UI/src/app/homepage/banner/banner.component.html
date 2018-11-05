@@ -1,0 +1,10 @@
+<div class="py-4 event-banner">
+  <ngb-carousel *ngIf="bannerEvents">
+    <ng-template ngbSlide *ngFor="let e of bannerEvents">
+      <img [src]="e.img" class="img-fluid">
+      <div class="carousel-caption">
+        <h3 class="text-capitalize">{{e.title}}</h3>      
+      </div>
+    </ng-template>  
+  </ngb-carousel>
+</div>

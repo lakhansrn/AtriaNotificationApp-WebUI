@@ -1,0 +1,9 @@
+.event-banner img{
+    height: 400px;
+    width: 100%;
+}
+@media only screen and (max-width: 700px){
+    .event-banner img{
+        height: 300px;
+    }
+} 

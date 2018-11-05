@@ -1,0 +1,23 @@
+.login-container{
+    display: flex;
+    flex-flow: column; 
+    justify-content: center;
+    margin: 0 auto;
+    color: var(--secondary);
+}
+.login-container input {
+    width: 100%;
+    padding-left: 35px;
+}
+.input-lable .fa{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    padding: 10px;
+}
+.input-lable{
+    position: relative;
+}
+.invalid-feedback{
+    font-size: 90%;
+}

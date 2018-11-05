@@ -1,3 +1,36 @@
-<p>
-  login works!
-</p>
+<p-dialog header="Login" [(visible)]="display" minwidth="300" 
+[draggable]="false"
+modal="true"
+dismissableMask="true">
+  <form [formGroup]="loginForm" class="login-container" (ngSubmit)="onSubmit()">
+    <div class="p-2">
+      <div class="form-group mb-4">
+        <div class="input-lable">
+          <i class="fa fa-user icon"></i>
+          <input type="text" formControlName="email" placeholder="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors && (f.email.dirty || f.email.touched)}" />
+        </div>
+        <div *ngIf="submitted && f.email.errors && (f.email.dirty || f.email.touched)" class="invalid-feedback d-block">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+        </div>
+      </div>
+      <div class="form-group mb-4">
+        <div class="input-lable">
+          <i class="fa fa-key icon"></i>
+
+          <input type="password" formControlName="password" placeholder="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors && (f.password.dirty || f.password.touched) }" />
+
+        </div>
+        <div *ngIf="submitted && f.password.errors && (f.password.dirty || f.password.touched)" class="invalid-feedback d-block">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <div *ngIf="error" class="invalid-feedback d-block pb-2 ">{{error}}</div>
+        <button class="btn btn-block btn-secondary" [disabled]="loginForm.invalid">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:20px"></i>
+          <span *ngIf="!loading">Sign in</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</p-dialog>

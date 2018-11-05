@@ -1,4 +1,4 @@
-<div class="aside" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
+<div class="aside" *ngIf="!isLoggedIn" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
     <div class="navbar-links" (click)="maskToggle()">
         <i class="pi pi-chevron-left aside-head"></i>
     </div>
@@ -8,35 +8,46 @@
     <a class="navbar-links" routerLinkActive="active" routerLink="/home" (click)="maskToggle()">
         Home
     </a>
-    <a class="navbar-links" routerLinkActive="active" routerLink="/login" (click)="maskToggle()">
-        Login
+    <a class="navbar-links" routerLinkActive="active" routerLink="/eventRegister" (click)="maskToggle()">
+        Event Registration
+    </a>
+
+</div>
+
+<div class="aside" *ngIf="isLoggedIn" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
+    <div class="navbar-links" (click)="maskToggle()">
+        <i class="pi pi-chevron-left aside-head"></i>
+    </div>
+
+    <div class="separator">General</div>
+
+    <a class="navbar-links" routerLinkActive="active" routerLink="/home" (click)="maskToggle()">
+        Home
     </a>
     <a class="navbar-links" routerLinkActive="active" routerLink="/eventRegister" (click)="maskToggle()">
         Event Registration
     </a>
 
-    <div class="separator">Announcer</div>
 
-    <a class="navbar-links" routerLinkActive="active" routerLink="/registerWriters" (click)="maskToggle()">
+    <div class="separator" *ngIf="isAnnouncer">Announcer</div>
+
+    <a class="navbar-links" *ngIf="isAnnouncer" routerLinkActive="active" routerLink="/registerWriters" (click)="maskToggle()">
         Register Writers
     </a>
-    <a class="navbar-links" routerLinkActive="active" routerLink="/eventCreation" (click)="maskToggle()">
+    <a class="navbar-links" *ngIf="isAnnouncer" routerLinkActive="active" routerLink="/eventCreation" (click)="maskToggle()">
         Events/Annoucements Creation
     </a>
-    <a class="navbar-links" routerLinkActive="active" routerLink="/approveContents" (click)="maskToggle()">
+    <a class="navbar-links" *ngIf="isAnnouncer" routerLinkActive="active" routerLink="/approveContents" (click)="maskToggle()">
         Approval
     </a>
-    
+
     <div class="separator">Content Writer</div>
 
     <a class="navbar-links" routerLinkActive="active" routerLink="/contentCreation" (click)="maskToggle()">
         Content Creation
     </a>
-    <a class="navbar-links" routerLinkActive="active" routerLink="/previewContent" (click)="maskToggle()">
-        Preview Content
-    </a>
     <a class="navbar-links" routerLinkActive="active" routerLink="/sendapproval" (click)="maskToggle()">
         Send Approval
     </a>
-    
+
 </div>

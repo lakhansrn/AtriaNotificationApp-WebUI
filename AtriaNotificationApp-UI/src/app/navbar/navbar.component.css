@@ -21,11 +21,9 @@
 .pi-bars:hover{
     background-color: #0b63ba;
 }
-.navbar-icon{ 
-    flex: 0.5;      
-}
 .navbar-title{
-    font-size: 1.5em;
+    margin: 0 auto;
+    font-size: 1.2rem;
     font-weight: bold;   
     text-transform: uppercase;     
 }

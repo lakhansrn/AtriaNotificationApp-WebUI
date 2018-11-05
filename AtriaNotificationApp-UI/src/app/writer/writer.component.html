@@ -1,3 +1,39 @@
-<p>
-  writer works!
-</p>
+<form *ngIf="user_content">
+  <div class="form-bar">
+    <div>
+      Mode:&nbsp;
+      <strong>
+          <span *ngIf="edit">Edit Mode</span> <span *ngIf="!edit">Create Mode</span>
+      </strong>
+    </div>
+  </div>
+  <div class="form-bar">
+    <label for="creation_title">Title:</label>
+    <input type="text" id="creation_title" placeholder="Enter Title.." [(ngModel)]="user_content.title" name="title">
+  </div>
+  <div class="form-bar">
+    <label for="creation_img_upload">Image: </label> <br>
+    <input type="file" id="creation_img_upload" (change)="setImage($event)" name="image">
+  </div>
+  <div class="form-group">
+    <label class="form-bar mb-0">Description: </label>
+    <md-editor name="Content" [preRender]="preRenderFunc" [(ngModel)]="user_content.description" [height]="'400px'" [mode]="mode"
+      [options]="options" required maxlength="500"></md-editor>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-info btn-sm mr-2" type="button" (click)="showPreview = !showPreview">Show preview</button>
+    <button class="btn btn-primary btn-sm" type="button" (click)="submitContent()">
+      <span *ngIf="edit">Save changes</span>  
+      <span *ngIf="!edit">Submit</span>  
+    </button>
+  </div>
+
+  <app-content-sidebar 
+  [contents]="[user_content]" 
+  [display]="showPreview" 
+  [current_data]="user_content" 
+  [preview_image]="preview_image"
+  (closeContent)="closeContent($event)"
+  [infiniteScroll]="false"></app-content-sidebar>
+
+</form>

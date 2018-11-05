@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreviewContentComponent } from './preview-content.component';
+import { EventCarouselComponent } from './event-carousel.component';
 
-describe('PreviewContentComponent', () => {
-  let component: PreviewContentComponent;
-  let fixture: ComponentFixture<PreviewContentComponent>;
+describe('EventCarouselComponent', () => {
+  let component: EventCarouselComponent;
+  let fixture: ComponentFixture<EventCarouselComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreviewContentComponent ]
+      declarations: [ EventCarouselComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreviewContentComponent);
+    fixture = TestBed.createComponent(EventCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
