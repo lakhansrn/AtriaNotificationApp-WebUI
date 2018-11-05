@@ -11,4 +11,7 @@ export class UserService {
         const apiUrl = environment.apiEndPoint;
         return this.http.get<User[]>(`${apiUrl}/users`);
     }
+    register(user: User) {
+        return this.http.post(`${config.apiUrl}/users/register`, user);
+    }
 }

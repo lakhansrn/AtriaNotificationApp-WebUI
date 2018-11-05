@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    currentUser: any;
     constructor(private http: HttpClient) {
         const user = localStorage.getItem('currentUser');
         const isLogged = user ? true : false;

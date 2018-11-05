@@ -41,6 +41,7 @@ import { LoginComponent } from './login/login.component';
 import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     EventCarouselComponent,
     BannerComponent,
-    ContentSidebarComponent
+    ContentSidebarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

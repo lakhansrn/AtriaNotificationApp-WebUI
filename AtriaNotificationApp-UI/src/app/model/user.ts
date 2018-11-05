@@ -6,5 +6,5 @@ export class User {
     lastName: string;
     department: string;
     pno: number;
-    role: string;
+
 }
