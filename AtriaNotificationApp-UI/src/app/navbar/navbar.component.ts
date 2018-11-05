@@ -17,10 +17,13 @@ export class NavbarComponent implements OnInit {
 
   masked = false;
   title = 'App Title';
-  isLoggedIn: boolean;
+  isLoggedIn = false;
+  isAnnouncer = false;
+
 
   ngOnInit() {
     this.authenticationService.login$.subscribe(res => this.isLoggedIn = res);
+    this.authenticationService.announcerRole$.subscribe(isAnnouncer => this.isAnnouncer = isAnnouncer);
   }
 
   maskedToggle() {

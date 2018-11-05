@@ -10,7 +10,8 @@ import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucem
 import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
-import { AuthGuard } from './_guards';
+import { AuthGuard, RoleGuard } from './_guards';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,11 +19,34 @@ const routes: Routes = [
   { path: 'annoucements', component: AnnouncementsComponent },
   { path: 'eventRegister', component: EventRegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registerWriters', component: RegisterWritersComponent },
-  { path: 'eventCreation', component: EventsAnnoucementsCreationComponent, canActivate: [AuthGuard] },
-  { path: 'approveContents', component: ApproveContentComponent, canActivate: [AuthGuard] },
+  { path: '404', component: PageNotFoundComponent },
+  {
+    path: 'registerWriters',
+    component: RegisterWritersComponent,
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'announcer'
+    }
+  },
+  {
+    path: 'eventCreation',
+    component: EventsAnnoucementsCreationComponent,
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'announcer'
+    }
+  },
+  {
+    path: 'approveContents',
+    component: ApproveContentComponent,
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'announcer'
+    }
+  },
   { path: 'contentCreation', component: ContentCreationComponent, canActivate: [AuthGuard] },
   { path: 'sendapproval', component: SendApprovalComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
@@ -30,6 +54,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

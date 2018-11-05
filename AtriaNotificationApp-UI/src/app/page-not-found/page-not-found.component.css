@@ -1,0 +1,18 @@
+*:focus {outline:none;}
+h2 {
+    font-size: calc(20px + 15vw);
+    font-weight: 600;
+    margin: 0;
+}
+
+.page-not-found{
+    background: #C33232;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    overflow:hidden;
+    padding: 30px 0;
+}
