@@ -36,6 +36,12 @@ export class AuthenticationService {
             }));
     }
 
+    authenticate(token) {
+        localStorage.setItem('currentUser', JSON.stringify(token));
+        this.loggedIn.next(true);
+        this.isRoleAnnouncer.next(this.isAnnouncer());
+    }
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

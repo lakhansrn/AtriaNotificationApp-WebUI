@@ -1,0 +1,93 @@
+<form [formGroup]="announcerForm" (ngSubmit)="register()" class="my-4 p-3 card announcer-registration">
+  <div class="form-group">
+    <h3 class="text-center text-primary text-uppercase py-2"><strong>Sign up</strong></h3>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md">
+      <label for="firstName">First Name: </label>
+      <input class="form-control" id="firstName" type="text" formControlName="firstName">
+      <div *ngIf="f.firstName.errors?.required && (f.firstName.dirty || f.firstName.touched)" class="invalid-feedback d-block">
+        First Name is required
+      </div>
+    </div>
+    <div class="form-group col-md">
+      <label for="lastName">Last Name: </label>
+      <input class="form-control" id="lastName" type="text" formControlName="lastName">
+      <div *ngIf="f.lastName.errors?.required && (f.lastName.dirty || f.lastName.touched)" class="invalid-feedback d-block">
+        Last Name is required
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md">
+      <label for="email">Email: </label>
+      <input class="form-control" id="email" type="text" formControlName="email">
+    </div>
+    <div class="form-group col-md">
+      <label for="role">Role: </label>
+      <input class="form-control text-capitalize" id="role" type="text" formControlName="role">
+    </div>
+  </div>
+
+  <div formGroupName="pwd">
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <input class="form-control" id="password" type="password" formControlName="password">
+      <div *ngIf="pf.password.errors">
+        <div *ngIf="pf.password.errors?.required && (pf.password.dirty || pf.password.touched)" class="invalid-feedback d-block">
+          Password is required
+        </div>
+        <div *ngIf="pf.password.errors?.minlength && (pf.password.dirty || pf.password.touched)" class="invalid-feedback d-block">
+          Password should be at least 8 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password: </label>
+      <input class="form-control" id="confirmPassword" type="password" formControlName="confirmPassword">
+      <div *ngIf="pf.confirmPassword.errors || f.pwd.errors">
+        <div *ngIf="pf.confirmPassword.errors?.required && (pf.confirmPassword.dirty || pf.confirmPassword.touched)"
+          class="invalid-feedback d-block">
+          Password is required
+        </div>
+        <div *ngIf="pf.confirmPassword.errors?.minlength && (pf.confirmPassword.dirty || pf.confirmPassword.touched)"
+          class="invalid-feedback d-block">
+          Password should be at least 8 characters
+        </div>
+        <div *ngIf="f.pwd.errors?.mismatch && (pf.confirmPassword.dirty || pf.confirmPassword.touched)" class="invalid-feedback d-block">
+          Passwords do not match
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md">
+      <label for="department">Department: </label>
+      <input class="form-control" id="department" type="text" formControlName="department">
+      <div *ngIf="f.department.errors?.required && (f.department.dirty || f.department.touched)" class="invalid-feedback d-block">
+        Department is required
+      </div>
+    </div>
+
+    <div class="form-group col-md">
+      <label for="pno">Phone no: </label>
+      <input class="form-control" id="pno" type="text" formControlName="pno">
+      <div *ngIf="f.pno.errors?.required && (f.pno.dirty || f.pno.touched)" class="invalid-feedback d-block">
+        Phone no. is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="response">
+    <div class="invalid-feedback d-block">{{response}}</div>
+  </div>
+  <div class="form-group pt-3">
+    <button class="btn btn-block btn-primary" type="submit"
+    [disabled]="announcerForm.invalid">Register</button>
+  </div>
+</form>

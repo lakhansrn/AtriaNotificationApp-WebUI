@@ -44,6 +44,7 @@ import { EventCarouselComponent } from './homepage/event-carousel/event-carousel
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AnnouncerRegistrationComponent } from './registration/announcer/announcer.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EventCarouselComponent,
     BannerComponent,
     ContentSidebarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AnnouncerRegistrationComponent,
   ],
   imports: [
     BrowserModule,
