@@ -12,6 +12,7 @@ import { ContentCreationComponent } from './writer/content-creation/content-crea
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { AuthGuard, RoleGuard } from './_guards';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AnnouncerRegistrationComponent } from './registration';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'eventRegister', component: EventRegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: '404', component: PageNotFoundComponent },
+  { path: 'announcerRegistration', component: AnnouncerRegistrationComponent },
   {
     path: 'registerWriters',
     component: RegisterWritersComponent,

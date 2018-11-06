@@ -20,54 +20,18 @@ export class AnnouncementCreationComponent implements OnInit {
     ;
   announcementImageSelection: boolean;
   announcementValidationMessage: string;
-  eventSubmitted: boolean = false;
-  descriptionSubmitted: boolean = false;
+  eventSubmitted = false;
+  descriptionSubmitted = false;
    @Output() backevent = new EventEmitter<boolean >();
   constructor() { }
 
   ngOnInit() {
   }
   back() {
-    this.backevent.emit()
+    // this.backevent.emit()
 
   }
   announcementSubmit() {
-
-    // if (this.announcements[this.announcment_index].title.length <= 0 && this.announcements[this.announcment_index].image.length <= 0 && this.announcements[this.announcment_index].description.length <= 0) {
-    //   //this.announcementValidationMessage='fillout all details';
-    //   //console.log(this.announcementValidationMessage);
-
-    // }
-
-    if (this.announcements.title.length <= 0 && this.announcements.image.length <= 0 && this.announcements.description.length <= 0) {
-      this.announcementValidationMessage = 'fillout all details';
-      //console.log(this.announcementValidationMessage);
-
-    }
-    else if (this.announcements.title.length <= 0) {
-      this.announcementValidationMessage = 'fillout  title';
-      //console.log(this.announcementValidationMessage);
-
-    }
-    else if (this.announcementImageSelection=== true) {
-      if (this.announcements.image.length <= 0) {
-        this.announcementValidationMessage = 'banner not selected';
-        //console.log(this.announcementValidationMessage);
-
-      }
-    }
-    else if (this.announcements.description.length <= 0) {
-      this.announcementValidationMessage = 'fillout description';
-      //console.log(this.announcementValidationMessage);
-
-    }
-    else if (this.announcements.posted.length <= 0) {
-      this.announcementValidationMessage = 'post';
-    }
-    else {
-      this.announcementValidationMessage = '';
-      this.eventSubmitted = true;
-    }
 
   }
 
