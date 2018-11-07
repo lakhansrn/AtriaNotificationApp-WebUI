@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import decode from 'jwt-decode';
 
@@ -62,11 +62,25 @@ export class AuthenticationService {
         // decode the token to get its payload
         if (token) {
             const tokenPayload = decode(token);
-            if (!this.isAuthenticated() || tokenPayload.role !== 'announcer') {
-                return false;
+            if (tokenPayload.role === 'announcer') {
+                return true;
             }
         }
 
-        return true;
+        return false;
+    }
+
+    getUserJwt() {
+        const token = localStorage.getItem('currentUser');
+
+        // decode the token to get its payload
+        if (token) {
+            const tokenPayload = decode(token);
+            if (tokenPayload.unique_name) {
+                return tokenPayload.unique_name;
+            }
+        }
+
+        return null;
     }
 }
