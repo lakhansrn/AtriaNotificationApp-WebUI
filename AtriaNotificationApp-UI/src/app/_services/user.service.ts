@@ -17,6 +17,13 @@ export class UserService {
         return this.http.get<User[]>(`${apiUrl}/users`);
     }
 
+    registerUser(form: Object) {
+        return this.http.post(`${environment.apiEndPoint}/Users/register/contentWriter`, form)
+        .pipe(
+            catchError(this.handleError('registerUser', []))
+        );
+    }
+
     getDetails() {
         const jwt = this.authenticationService.getUserJwt();
         if (jwt) {

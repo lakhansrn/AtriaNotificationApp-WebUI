@@ -31,7 +31,7 @@ export class AnnouncerRegistrationComponent implements OnInit {
     },
     { validator: this.passwordMatchValidator} ),
     department: ['', Validators.required],
-    pno: [0, Validators.required]
+    pno: ['', Validators.required]
   });
 
   constructor(

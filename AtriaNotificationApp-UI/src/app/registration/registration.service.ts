@@ -15,14 +15,14 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
 
   getRegisterDetails(id: string) {
-    return this.http.get(`${this.apiEndPoint}/Users/register/announcer/${id}`)
+    return this.http.get(`${this.apiEndPoint}/Users/register/user/${id}`)
     .pipe(
       catchError(this.handleError('getRegisterDetails', []))
     );
   }
 
   register(user: User) {
-    return this.http.post(`${this.apiEndPoint}/Users/complete_register/announcer`, user)
+    return this.http.post(`${this.apiEndPoint}/Users/complete_register/user`, user)
     .pipe(
       catchError(this.handleError('register', []))
     );
