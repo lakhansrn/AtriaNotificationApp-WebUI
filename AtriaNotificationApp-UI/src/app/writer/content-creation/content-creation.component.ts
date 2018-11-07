@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Event } from '../../model/event.model';
-import { EventService } from '../services/event.service';
+import { EventService } from '../../_services/event.service';
 import { Announcement } from '../../model/announcement.model';
 import { Content } from '../../model/content.model';
-import { EventAnnouncementID } from '../models/event-announcement-id.model';
+import { EventAnnouncementID } from '../../model/event-announcement-id.model';
 
 @Component({
   selector: 'app-content-creation',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import{Event} from '../../models/event.model';
-import{Announcement} from '../../models/announcement.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Event, Announcement } from '../../model';
+import { EventService, ImageUploadService } from '../../_services';
+import { EventAnnouncementCreationService } from '../service/event-announcement-creation.service';
 @Component({
   selector: 'app-events-annoucements-creation',
   templateUrl: './events-annoucements-creation.component.html',
@@ -9,63 +9,148 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class EventsAnnoucementsCreationComponent implements OnInit {
 
-  
+  edit: boolean;
+  event_panel = false;
+  imgFile = null;
 
-  eventDetail: Event={
-    event_name: '',
+  all_events: Event[];
+  event: Event;
+  eventData: Event = {
     event_banner: '',
-  
-
-    announcements:[ 
-    ],
+    event_name: '',
+    announcements: [],
     description: '',
-    showAsBanner: false
-  }
-  eventValidationMessage:string;
-  eventSubmitted:boolean=false;
-  descriptionSubmitted:boolean=false;
-  constructor() { }
+    showAsBanner: false,
+    id: '00000000-0000-0000-0000-000000000000'
+  };
+  event_suggestions: Event[];
+
+  all_announcement: Announcement[];
+
+
+  constructor(
+    private eventService: EventService,
+    private imageUploadService: ImageUploadService,
+    private eventAnnouncementService: EventAnnouncementCreationService
+    ) { }
 
   ngOnInit() {
-  }
-  back(e){
-    this.eventSubmitted=!e;
-  }
-  eventSubmit(){
-  
-   if(this.eventDetail.event_name.length<=0 && this.eventDetail.event_banner.length<=0 && this.eventDetail.description.length<=0)
-   {
-    this.eventValidationMessage='fillout all details';
-    //console.log(this.eventValidationMessage);
-    
-   }
-   else if(this.eventDetail.event_name.length<=0)
-   {
-    this.eventValidationMessage='fillout event name details';
-    //console.log(this.eventValidationMessage);
-    
-   }
-   else if(this.eventDetail.showAsBanner===true)
-   {
-    if(this.eventDetail.event_banner.length<=0)
-   {
-    this.eventValidationMessage='banner not selected';
-    //console.log(this.eventValidationMessage);
-    
-   }
-  }
-   else if(this.eventDetail.description.length<=0)
-   {
-    this.eventValidationMessage='fillout description';
-    //console.log(this.eventValidationMessage);
-    
-   }
-   else{
-    this.eventValidationMessage='';
-    this.eventSubmitted=true;
-   }
-
+    this.getEvents();
   }
 
-   
+  eventSubmit() {
+    const upload = (uploadContent) => {
+      let img_path = null;
+      this.imageUploadService.uploadImage(this.imgFile)
+        .subscribe(res => {
+          if (res['secure_url']) {
+            img_path = res['secure_url'];
+            this.eventData.event_banner = img_path;
+            uploadContent();
+          } else {
+            alert('There was an error while uploading image');
+          }
+        });
+    };
+    if (this.edit) {
+      if (this.imgFile) {
+        upload(this.updateEvent.bind(this));
+      } else {
+        this.updateEvent();
+      }
+    } else {
+      if (this.imgFile) {
+        upload(this.uploadEvent.bind(this));
+      } else {
+        this.uploadEvent();
+      }
+    }
+    this.getEvents();
+  }
+
+  getEvents(callback?) {
+    this.eventService.getEvents().subscribe((events) => {
+      this.all_events = events;
+      console.log(this.all_events);
+      this.event_suggestions = this.all_events;
+      if (callback) {
+        callback();
+      }
+    });
+  }
+
+  searchEvent(e) {
+    if (e.query === '') {
+      this.event_suggestions = this.all_events;
+    }
+
+    this.event_suggestions = this.all_events
+      .filter(val => val.event_name.toLowerCase().indexOf(e.query.toLowerCase()) > -1);
+  }
+
+  chooseEvent() {
+    this.eventAnnouncementService.setEventID(this.event.id);
+    this.all_announcement = Object.assign([], this.event.announcements);
+    this.edit = true;
+    this.imgFile = null;
+    this.eventAnnouncementService.setAnnouncements(this.all_announcement);
+    Object.assign(this.eventData, this.event);
+  }
+
+  onUpdatedAnnouncements(event_id) {
+    const updateAnnouncementContents = (id) =>  {
+      this.all_announcement = this.all_events
+      .filter(val => val.id === id)
+      .map(event => event.announcements)[0];
+      this.eventAnnouncementService.setAnnouncements(this.all_announcement);
+    };
+
+    this.getEvents(() => {
+      updateAnnouncementContents(event_id);
+    });
+  }
+
+  addEvent() {
+    this.clearInput();
+    this.event = null;
+    this.edit = false;
+    this.event_panel = true;
+  }
+
+  closePanel() {
+    this.event_panel = false;
+    this.clearInput();
+  }
+
+  editEvent() {
+    this.edit = true;
+    Object.assign(this.eventData, this.event);
+    this.event_panel = true;
+  }
+
+  setImage(e) {
+    this.imgFile = e.target.files[0];
+    console.log(this.imgFile);
+  }
+
+  uploadEvent() {
+    this.eventService.postEvent(this.eventData)
+      .subscribe(res => alert('Event Uploaded'));
+  }
+
+  updateEvent() {
+    this.eventService.updateEvent(this.eventData)
+    .subscribe(res => alert('Event Updated'));
+  }
+
+  clearInput() {
+    this.eventData.event_banner = '';
+    this.eventData.event_name = '';
+    this.eventData.announcements = [];
+    this.eventData.description = '';
+    this.eventData.showAsBanner = false;
+    this.eventData.id = '00000000-0000-0000-0000-000000000000';
+    this.imgFile = null;
+  }
+
 }

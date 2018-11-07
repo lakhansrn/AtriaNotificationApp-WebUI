@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Content } from '../model/content.model';
-import { ImageUploadService } from './services/image-upload.service';
-import { EventService } from './services/event.service';
+import { EventService, ImageUploadService, UserService } from '../_services';
 
 @Component({
   selector: 'app-writer',
@@ -11,16 +10,16 @@ import { EventService } from './services/event.service';
 export class WriterComponent implements OnInit {
   user_content: Content;
   empty_content: Content = {
-    id: this.temp_guid(),
+    id: '00000000-0000-0000-0000-000000000000',
     title: '',
     posted: new Date(),
     image: '',
     postedBy: {
-      id: this.temp_guid(),
-      name: 'test',
-      department: 'cse',
-      email: 'test@gmail.com',
-      pno: 123
+      id: '00000000-0000-0000-0000-000000000000',
+      name: '',
+      department: '',
+      email: '',
+      pno: 0
     },
     description: '',
     isApproved: false,
@@ -40,9 +39,23 @@ export class WriterComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   profile_icon = 'https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest/scale-to-width-down/480?cb=20171030104015';
 
-  constructor(private imageUploadService: ImageUploadService, private eventService: EventService) { }
+  constructor(private imageUploadService: ImageUploadService,
+    private eventService: EventService,
+    private userService: UserService) {
+    }
 
   ngOnInit() {
+    this.userService.getDetails()
+      .subscribe(res => {
+        if (res) {
+          const { firstName, lastName, department, email, pno } = res;
+          this.empty_content.postedBy.name = firstName + ' ' + lastName;
+          this.empty_content.postedBy.department = department;
+          this.empty_content.postedBy.email = email;
+          this.empty_content.postedBy.pno = pno;
+          console.log(this.user_content);
+        }
+      });
   }
 
   setImage(e) {
@@ -100,15 +113,6 @@ export class WriterComponent implements OnInit {
 
   closeContent(val: boolean) {
     this.showPreview = val;
-  }
-
-  temp_guid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
 }

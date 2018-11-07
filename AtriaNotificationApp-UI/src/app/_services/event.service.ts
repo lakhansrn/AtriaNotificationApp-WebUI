@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Event } from '../../model/event.model';
-import { Content } from '../../model/content.model';
-import { EventAnnouncementID } from '../models/event-announcement-id.model';
-import { environment } from '../../../environments/environment';
+import { Event } from '../model/event.model';
+import { Content } from '../model/content.model';
+import { EventAnnouncementID } from '../model/event-announcement-id.model';
+import { environment } from '../../environments/environment';
+import { Announcement } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,34 @@ export class EventService {
     return this.http.get<Event[]>(`${environment.apiEndPoint}/api/event`)
     .pipe(
       catchError(this.handleError('getEvents', []))
+    );
+  }
+
+  postEvent(event: Event) {
+    return this.http.post(`${environment.apiEndPoint}/api/event`, event)
+    .pipe(
+      catchError(this.handleError('postEvent', []))
+    );
+  }
+
+  updateEvent(event: Event) {
+    return this.http.put(`${environment.apiEndPoint}/api/event`, event)
+    .pipe(
+      catchError(this.handleError('updateEvent', []))
+    );
+  }
+
+  postAnnouncement(eventid: string, announcement: Announcement) {
+    return this.http.post(`${environment.apiEndPoint}/api/event/${eventid}/Announcement`, announcement)
+    .pipe(
+      catchError(this.handleError('updateEvent', []))
+    );
+  }
+
+  updateAnnouncement(eventid: string, announcement: Announcement) {
+    return this.http.put(`${environment.apiEndPoint}/api/event/${eventid}/Announcement`, announcement)
+    .pipe(
+      catchError(this.handleError('updateAnnouncement', []))
     );
   }
 
@@ -45,7 +74,7 @@ export class EventService {
     const event_id = event_announcement_id.event_id;
     const announcement_id = event_announcement_id.announcement_id;
     const content_id = event_announcement_id.content_id;
-    return this.http.put(`${environment.apiEndPoint}/api/event/${event_id}/announcement/${announcement_id}/content/${content_id}`, content)
+    return this.http.put(`${environment.apiEndPoint}/api/event/${event_id}/Announcement/${announcement_id}/content/${content_id}`, content)
     .pipe(
       catchError(this.handleError('postContent', []))
     );
