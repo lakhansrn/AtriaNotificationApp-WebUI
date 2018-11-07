@@ -1,3 +1,17 @@
-<p>
-  register-writers works!
-</p>
+<div class="container my-4">
+    <form (ngSubmit)="registerWriter()" [formGroup]="registerForm" style="max-width: 300px;">
+        <div class="form-group">
+            <label>Enter Email: </label>
+            <input type="text" class="form-control" formControlName="email"
+            [ngClass]="{'is-invalid': f.email.errors && (f.email.dirty || f.email.touched)}"
+            >
+            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)">
+              <div class="invalid-feedback d-block">
+                <div *ngIf="f.email.errors?.required">Email is required</div>
+                <div *ngIf="f.email.errors?.email">Invalid Email</div>
+              </div>
+            </div>
+        </div>
+        <button class="btn btn-secondary btn-sm" [disabled]="registerForm.invalid">Submit</button>
+      </form>
+</div>
