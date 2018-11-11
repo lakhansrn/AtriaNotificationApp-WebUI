@@ -8,7 +8,7 @@
         <i class="pi pi-chevron-right arrow-content" (click)="move(1)" [ngClass]="{'d-none': arrowClass(1)}"></i>
       </div>
       <h2 class="text-capitalize">{{current_data.title}}</h2>
-      <div class="text-secondary">Posted on {{current_data.posted}}</div>
+      <div class="text-secondary">{{current_data.posted | date: 'MMM d, y h:mm a'}}</div>
       <div *ngIf="current_data.image">
         <img [src]="current_data.image" class="img-fluid mt-2 content-image">
       </div>

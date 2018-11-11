@@ -1,24 +1,21 @@
 <div class="atria-navbar">
   <div class="top-nav">
-      <div class="navbar-icon">
-        <i class="pi pi-bars" (click)="maskedToggle()"></i>
-      </div>  
-      <div class="navbar-title">
+    <div class="navbar-icon">
+      <i class="pi pi-bars" (click)="maskedToggle()"></i>
+    </div>
+    <div class="navbar-title ml-2">
+      <a routerLink="/">
         <img src="assets/logo-atria.ico" alt="Atria Institute of Technology" class="img-fluid">
-      </div> 
-      <div class="ml-auto mr-2" *ngIf="!isLoggedIn">
-        <button class="auth-btn" (click)="login()">Sign In</button>
-      </div>
-      <div class="ml-auto mr-2" *ngIf="isLoggedIn">
-        <button class="auth-btn" (click)="logout()">Log Out</button>
-      </div>
-  </div>   
-  <app-navbar-aside 
-  [masked]="masked"
-  (maskedToggle)="maskedToggle()"
-  [isLoggedIn]="isLoggedIn"
-  [isAnnouncer]="isAnnouncer"
-  ></app-navbar-aside>
+      </a>
+    </div>
+    <div class="ml-auto mr-2" *ngIf="!isLoggedIn">
+      <button class="auth-btn" (click)="login()">Sign In</button>
+    </div>
+    <div class="ml-auto mr-2" *ngIf="isLoggedIn">
+      <button class="auth-btn" (click)="logout()">Log Out</button>
+    </div>
+  </div>
+  <app-navbar-aside [masked]="masked" (maskedToggle)="maskedToggle()" [isLoggedIn]="isLoggedIn" [isAnnouncer]="isAnnouncer"></app-navbar-aside>
 </div>
 
 <div [ngClass]="{'mask': masked}" (click)="maskedToggle()"></div>
