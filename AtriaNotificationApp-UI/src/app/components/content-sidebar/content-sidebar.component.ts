@@ -15,6 +15,7 @@ export class ContentSidebarComponent implements OnInit {
   @Input() preview_image;
   @Output() closeContent = new EventEmitter<Boolean>();
   current_index = 0;
+  showModal = false;
   hideLeftArrow: boolean;
   hideRightArrow: boolean;
 
@@ -64,6 +65,11 @@ export class ContentSidebarComponent implements OnInit {
         return this.current_index === 0;
       }
     }
+  }
+
+  show_modal() {
+    this.showModal = true;
+    console.log(this.showModal);
   }
 
 }

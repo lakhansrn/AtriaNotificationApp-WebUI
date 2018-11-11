@@ -10,10 +10,10 @@
       <h2 class="text-capitalize">{{current_data.title}}</h2>
       <div class="text-secondary">{{current_data.posted | date: 'MMM d, y h:mm a'}}</div>
       <div *ngIf="current_data.image">
-        <img [src]="current_data.image" class="img-fluid mt-2 content-image">
+        <img (click)="show_modal()" [src]="current_data.image" class="img-fluid mt-2 content-image">
       </div>
       <div *ngIf="preview_image">
-        <img [src]="preview_image" alt="preview_image" class="img-fluid mt-2 content-image">
+        <img (click)="show_modal()" [src]="preview_image" alt="preview_image" class="img-fluid mt-2 content-image">
       </div>
       <div class="my-4">
         <div markdown [data]="current_data.description"></div>
@@ -31,3 +31,10 @@
     </div>
   </p-sidebar>
 </div>
+
+<p-blockUI [blocked]="showModal">
+  <div class="modal2" *ngIf="showModal">
+      <i class="pi pi-times closeimg" (click)="showModal = false"></i>
+      <img class="modal-img" [src]="current_data.image">
+  </div>
+</p-blockUI>
