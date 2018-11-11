@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Content } from '../model/content.model';
-import { EventService, ImageUploadService, UserService } from '../_services';
+import { EventService, ImageUploadService, UserService, LoaderService, ToastService } from '../_services';
 
 @Component({
   selector: 'app-writer',
@@ -41,12 +41,16 @@ export class WriterComponent implements OnInit {
 
   constructor(private imageUploadService: ImageUploadService,
     private eventService: EventService,
+    private loaderService: LoaderService,
+    private toastService: ToastService,
     private userService: UserService) {
     }
 
   ngOnInit() {
+    this.loaderService.setLoader();
     this.userService.getDetails()
       .subscribe(res => {
+        this.loaderService.clearLoader();
         if (res) {
           const { firstName, lastName, department, email, pno } = res;
           this.empty_content.postedBy.name = firstName + ' ' + lastName;
@@ -73,6 +77,7 @@ export class WriterComponent implements OnInit {
   submitContent() {
     const upload = (uploadContent) => {
       let img_path = null;
+      this.loaderService.setLoader();
       this.imageUploadService.uploadImage(this.image_file)
         .subscribe(res => {
           if (res['secure_url']) {
@@ -80,7 +85,8 @@ export class WriterComponent implements OnInit {
             this.user_content.image = img_path;
             uploadContent();
           } else {
-            alert('There was an error while uploading image');
+            this.loaderService.clearLoader();
+            this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
           }
         });
     };
@@ -99,7 +105,8 @@ export class WriterComponent implements OnInit {
   postContentRequest() {
     this.eventService.postContent(this.event_announcement_id, this.user_content)
       .subscribe(result => {
-        alert('Content Posted');
+        this.loaderService.clearLoader();
+        this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Content Posted!'});
         this.user_content = null;
       });
   }
@@ -107,7 +114,8 @@ export class WriterComponent implements OnInit {
   updateContentRequest() {
     this.eventService.updateContent(this.event_announcement_id, this.user_content)
     .subscribe(result => {
-      alert('Content Updated');
+      this.loaderService.clearLoader();
+      this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Content Updated!'});
     });
   }
 

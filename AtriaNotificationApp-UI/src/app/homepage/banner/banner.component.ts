@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from '../../model/event.model';
+import { LoaderService } from '../../_services';
 import { Banner } from './banner.model';
 import { BannerService } from '../services/banner.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,9 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BannerComponent implements OnInit {
 
-  constructor(carouselConfig: NgbCarouselConfig, private bannerService: BannerService) {
+  constructor(carouselConfig: NgbCarouselConfig,
+    private loaderService: LoaderService,
+    private bannerService: BannerService) {
     carouselConfig.interval = 6000;
   }
 
@@ -23,7 +25,9 @@ export class BannerComponent implements OnInit {
   }
 
   private initBanner() {
+    this.loaderService.setLoader();
     this.bannerService.getBanners().subscribe(banners => {
+      this.loaderService.clearLoader();
       this.bannerEvents = banners;
     });
   }

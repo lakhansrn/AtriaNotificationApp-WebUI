@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService, UserService } from '../_services';
+import { AuthenticationService, UserService, LoaderService } from '../_services';
 import { NavbarService } from '../navbar/navbar.service';
 
 @Component({
@@ -12,7 +12,6 @@ import { NavbarService } from '../navbar/navbar.service';
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-    loading = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -24,6 +23,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
+        private loadService: LoaderService,
         private authenticationService: AuthenticationService,
         private navbarService: NavbarService) { }
 
@@ -55,19 +55,21 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.loading = true;
+        // this.loading = true;
+        this.loadService.setLoader();
         this.authenticationService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.loading = !this.loading;
+                    this.loadService.clearLoader();
                     this.loginForm.reset();
                     this.router.navigate([this.returnUrl]);
                     this.display = !this.display;
+                    this.error = null;
                 },
                 error => {
                     this.error = error;
-                    this.loading = false;
+                    this.loadService.clearLoader();
                 });
     }
 

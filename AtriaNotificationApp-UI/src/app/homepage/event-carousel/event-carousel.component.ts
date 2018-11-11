@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { Event } from '../../model/event.model';
-import { Content } from '../../model/content.model';
+import { LoaderService } from '../../_services';
 
 @Component({
   selector: 'app-event-carousel',
@@ -13,7 +13,8 @@ export class EventCarouselComponent implements OnInit {
   events: Event[];
   @Output() showcontent = new EventEmitter<string>();
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService,
+    private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getEvents();
@@ -22,7 +23,9 @@ export class EventCarouselComponent implements OnInit {
   }
 
   getEvents() {
+    this.loaderService.setLoader();
     this.eventService.getEvents().subscribe(events => {
+      this.loaderService.clearLoader();
       this.events = events;
       console.log(this.events);
     });

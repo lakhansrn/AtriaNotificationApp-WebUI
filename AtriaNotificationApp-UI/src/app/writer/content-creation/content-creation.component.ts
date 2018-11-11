@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Event } from '../../model/event.model';
-import { EventService } from '../../_services/event.service';
+import { EventService, LoaderService } from '../../_services';
 import { Announcement } from '../../model/announcement.model';
 import { Content } from '../../model/content.model';
 import { EventAnnouncementID } from '../../model/event-announcement-id.model';
@@ -37,14 +37,17 @@ export class ContentCreationComponent implements OnInit {
 
   @Output() open_content_panel = new EventEmitter<Object>();
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService,
+    private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getEvents();
   }
 
   getEvents() {
+    this.loaderService.setLoader();
     this.eventService.getEvents().subscribe((events) => {
+      this.loaderService.clearLoader();
       this.all_events = events;
       // console.log(this.all_events);
       this.event_suggestions = this.all_events;
@@ -90,8 +93,10 @@ export class ContentCreationComponent implements OnInit {
   }
 
   editContent() {
+    this.loaderService.setLoader();
     this.eventService.getContents(this.event_announcement_id.announcement_id)
     .subscribe(res => {
+      this.loaderService.clearLoader();
       this.all_content = res;
       this.content_suggestions = this.all_content;
     });

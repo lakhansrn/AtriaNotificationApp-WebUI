@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
     private navbarService: NavbarService) { }
 
   masked = false;
-  title = 'App Title';
   isLoggedIn = false;
   isAnnouncer = false;
 

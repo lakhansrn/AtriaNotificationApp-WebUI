@@ -45,7 +45,10 @@
     </div>
 
     <div>
-        <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+        <button class="btn btn-sm btn-primary" type="submit">
+          <span *ngIf="edit">Save Changes</span> 
+          <span *ngIf="!edit">Submit</span> 
+        </button>
         <button class="btn btn-sm btn-danger ml-2" (click)="closePanel()">Cancel</button>
     </div>
   </form>
