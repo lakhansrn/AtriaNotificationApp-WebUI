@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        // this.loading = true;
         this.loadService.setLoader();
         this.authenticationService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
