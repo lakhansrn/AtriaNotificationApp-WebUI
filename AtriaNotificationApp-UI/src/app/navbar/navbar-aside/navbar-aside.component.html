@@ -1,7 +1,4 @@
 <div class="aside" *ngIf="!isLoggedIn" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
-    <div class="navbar-links" (click)="maskToggle()">
-        <i class="pi pi-chevron-left aside-head"></i>
-    </div>
 
     <div class="separator">General</div>
 
@@ -15,9 +12,6 @@
 </div>
 
 <div class="aside" *ngIf="isLoggedIn" [ngClass]="{'aside-visible': masked, 'aside-hidden': !masked}">
-    <div class="navbar-links" (click)="maskToggle()">
-        <i class="pi pi-chevron-left aside-head"></i>
-    </div>
 
     <div class="separator">General</div>
 

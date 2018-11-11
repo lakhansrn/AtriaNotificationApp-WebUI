@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, Announcement } from '../../model';
-import { EventService, ImageUploadService } from '../../_services';
+import { EventService, ImageUploadService, LoaderService, ToastService } from '../../_services';
 import { EventAnnouncementCreationService } from '../service/event-announcement-creation.service';
+
 @Component({
   selector: 'app-events-annoucements-creation',
   templateUrl: './events-annoucements-creation.component.html',
@@ -31,6 +32,8 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private imageUploadService: ImageUploadService,
+    private loaderService: LoaderService,
+    private toastService: ToastService,
     private eventAnnouncementService: EventAnnouncementCreationService
     ) { }
 
@@ -39,6 +42,7 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   }
 
   eventSubmit() {
+    this.loaderService.setLoader();
     const upload = (uploadContent) => {
       let img_path = null;
       this.imageUploadService.uploadImage(this.imgFile)
@@ -48,7 +52,8 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
             this.eventData.event_banner = img_path;
             uploadContent();
           } else {
-            alert('There was an error while uploading image');
+            this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
+            this.loaderService.clearLoader();
           }
         });
     };
@@ -69,8 +74,10 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   }
 
   getEvents(callback?) {
+    this.loaderService.setLoader();
     this.eventService.getEvents().subscribe((events) => {
       this.all_events = events;
+      this.loaderService.clearLoader();
       console.log(this.all_events);
       this.event_suggestions = this.all_events;
       if (callback) {
@@ -135,12 +142,18 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
 
   uploadEvent() {
     this.eventService.postEvent(this.eventData)
-      .subscribe(res => alert('Event Uploaded'));
+      .subscribe(res => {
+        this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Event Uploaded'});
+        this.loaderService.clearLoader();
+      });
   }
 
   updateEvent() {
     this.eventService.updateEvent(this.eventData)
-    .subscribe(res => alert('Event Updated'));
+    .subscribe(res => {
+      this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Updated', detail: 'Event Updated'});
+      this.loaderService.clearLoader();
+    });
   }
 
   clearInput() {

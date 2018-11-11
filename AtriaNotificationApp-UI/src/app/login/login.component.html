@@ -1,5 +1,9 @@
-<p-dialog header="Login" [(visible)]="display" minwidth="300" 
+<p-dialog header="Login" [(visible)]="display" 
+[width]="270"
+[resizable]="false"
+[responsive]="false"
 [draggable]="false"
+[blockScroll]="true"
 modal="true"
 dismissableMask="true">
   <form [formGroup]="loginForm" class="login-container" (ngSubmit)="onSubmit()">
@@ -26,8 +30,7 @@ dismissableMask="true">
       </div>
       <div class="mt-2">
         <div *ngIf="error" class="invalid-feedback d-block pb-2 ">{{error}}</div>
-        <button class="btn btn-block btn-secondary" [disabled]="loginForm.invalid">
-          <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:20px"></i>
+        <button class="btn btn-block btn-primary" [disabled]="loginForm.invalid">
           <span *ngIf="!loading">Sign in</span>
         </button>
       </div>

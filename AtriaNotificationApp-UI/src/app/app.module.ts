@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,6 +47,10 @@ import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnnouncerRegistrationComponent } from './registration/announcer/announcer.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ToastComponent } from './components/toast/toast.component';
+
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -67,6 +74,8 @@ import { AnnouncerRegistrationComponent } from './registration/announcer/announc
     ContentSidebarComponent,
     PageNotFoundComponent,
     AnnouncerRegistrationComponent,
+    LoaderComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,11 +95,14 @@ import { AnnouncerRegistrationComponent } from './registration/announcer/announc
     AutoCompleteModule,
     ReactiveFormsModule,
     DialogModule,
+    ToastModule,
+    BlockUIModule,
+    ProgressSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // provider used to create fake backend
+    MessageService,
 
   ],
   bootstrap: [AppComponent]

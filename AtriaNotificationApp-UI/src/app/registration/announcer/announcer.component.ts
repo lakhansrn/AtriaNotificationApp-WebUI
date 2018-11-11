@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, ValidationErrors, EmailValidator } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
-import { AuthenticationService } from '../../_services/authentication.service';
+import { AuthenticationService, LoaderService } from '../../_services';
 
 @Component({
   selector: 'app-announcer',
@@ -39,14 +39,17 @@ export class AnnouncerRegistrationComponent implements OnInit {
     private registrationService: RegistrationService,
     private route: Router,
     private authenticationService: AuthenticationService,
+    private loaderService: LoaderService,
     private fb: FormBuilder) {
       const id = this.router.snapshot.queryParamMap.get('id');
 
       if (id.length === 0 || id === null) {
         this.route.navigate(['404']);
       } else {
+        this.loaderService.setLoader();
         this.registrationService.getRegisterDetails(id)
         .subscribe(res => {
+          this.loaderService.clearLoader();
           Object.assign(this, res);
           this.announcerForm.controls['email'].setValue(this.email);
           this.announcerForm.controls['role'].setValue(this.role);
@@ -69,8 +72,10 @@ export class AnnouncerRegistrationComponent implements OnInit {
     announcer['email'] = this.f['email'].value;
     announcer['role'] = this.f['role'].value;
     announcer['password'] = this.pf['password'].value;
+    this.loaderService.setLoader();
     this.registrationService.register(announcer)
       .subscribe(res => {
+        this.loaderService.clearLoader();
         if (res['messages']) {
           this.response = res;
         } else if (res['token']) {

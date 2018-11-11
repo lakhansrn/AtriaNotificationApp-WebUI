@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Announcement } from '../../model/announcement.model';
-import { EventService, ImageUploadService } from '../../_services';
+import { EventService, ImageUploadService, LoaderService, ToastService } from '../../_services';
 import { EventAnnouncementCreationService } from '../service/event-announcement-creation.service';
 
 @Component({
@@ -31,6 +31,8 @@ export class AnnouncementCreationComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private imageUploadService: ImageUploadService,
+    private loaderService: LoaderService,
+    private toastService: ToastService,
     private eventAnnouncementService: EventAnnouncementCreationService
   ) { }
 
@@ -48,6 +50,7 @@ export class AnnouncementCreationComponent implements OnInit {
   }
 
   announcementSubmit() {
+    this.loaderService.setLoader();
     const upload = (uploadContent) => {
       this.imageUploadService.uploadImage(this.imgFile)
         .subscribe(res => {
@@ -55,7 +58,8 @@ export class AnnouncementCreationComponent implements OnInit {
             this.announcementData.img = res['secure_url'];
             uploadContent();
           } else {
-            alert('There was an error while uploading image');
+            this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
+            this.loaderService.clearLoader();
           }
         });
     };
@@ -113,16 +117,18 @@ export class AnnouncementCreationComponent implements OnInit {
   updateAnnouncement() {
     this.eventService.updateAnnouncement(this.eventid, this.announcementData)
     .subscribe(res => {
+      this.loaderService.clearLoader();
       this.updatedAnnouncements.emit(this.eventid);
-      alert('Announcement updated');
+      this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Announcement Updated'});
     });
   }
 
   uploadAnnouncement() {
     this.eventService.postAnnouncement(this.eventid, this.announcementData)
     .subscribe(res => {
+      this.loaderService.clearLoader();
       this.updatedAnnouncements.emit(this.eventid);
-      alert('Announcement Uploaded');
+      this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Announcement Uploaded'});
     });
   }
 

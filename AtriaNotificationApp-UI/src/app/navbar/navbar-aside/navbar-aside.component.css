@@ -1,15 +1,13 @@
 .aside{
     width: calc(5vw + 200px);
     background: white;
-    height: 100%;
     position: fixed;
-    top: 0;
+    top: calc(var(--navbar-height));
     bottom: 0;
-    z-index: 9999; 
+    z-index: 999; 
     border-right: 1px solid lightgrey;
     display: flex;  
     flex-flow: column;
-    align-items: center;
     padding: 1.5em 1em;
     overflow-y: auto; 
 }
@@ -24,20 +22,10 @@
     transform: translateX(-500px);
     transition: transform 0.5s ease;
 }
-.aside-head{
-    border: 1px solid lightgrey;
-    border-radius: 25px;
-    width: 2.2em;
-    height: 2.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;    
-}
 .navbar-links{
-    margin: 1em;
+    margin: 0.7rem;
     color: grey;
-    cursor: pointer;    
-    text-align: center;
+    cursor: pointer;
 }
 .separator{
     border-bottom: 1px solid lightgrey;
@@ -46,4 +34,5 @@
     text-align: center;
     font-weight: bold;
     color: rgb(6, 40, 150);
+    display: none;
 }
