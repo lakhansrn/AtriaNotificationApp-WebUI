@@ -15,12 +15,20 @@
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
 }
 .pi-bars{
+    color: white;
+    background-image: linear-gradient(to right top, #eb5151, #e14d4d, #d84a4a, #ce4646, #c54343);
+    margin: 15px 10px;
+    padding: 6px;
+    border-radius: 6px;
     font-size: 1.8em;
-    padding: 1.5rem 1rem;
     cursor: pointer;    
+}
+.pi-bars:hover{
+    background-color: lightgrey;
 }
 .navbar-title{
     width: 130px;
+    cursor: pointer;
 }
 .mask{
     width: 100%;

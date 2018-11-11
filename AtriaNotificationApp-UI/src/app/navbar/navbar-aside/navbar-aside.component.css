@@ -1,6 +1,6 @@
 .aside{
     width: calc(5vw + 200px);
-    background: white;
+    background: #fafafa;
     position: fixed;
     top: calc(var(--navbar-height));
     bottom: 0;
@@ -8,11 +8,11 @@
     border-right: 1px solid lightgrey;
     display: flex;  
     flex-flow: column;
-    padding: 1.5em 1em;
+    padding: 1em 0;
     overflow-y: auto; 
 }
 .aside > :last-child {
-    padding-bottom: 3em;
+    border-bottom: 0;
 }
 .aside-visible{
     transform: translateX(0px);
@@ -23,9 +23,10 @@
     transition: transform 0.5s ease;
 }
 .navbar-links{
-    margin: 0.7rem;
     color: grey;
     cursor: pointer;
+    padding: 12px 0 12px 10px;
+    border-bottom: 1px solid lightgrey;
 }
 .separator{
     border-bottom: 1px solid lightgrey;
