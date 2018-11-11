@@ -28,6 +28,7 @@ export class ContentSidebarComponent implements OnInit {
   }
 
   hideContent() {
+    this.current_index = 0;
     this.closeContent.emit(false);
   }
 
