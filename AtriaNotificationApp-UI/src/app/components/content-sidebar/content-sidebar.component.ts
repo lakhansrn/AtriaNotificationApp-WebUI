@@ -11,8 +11,6 @@ export class ContentSidebarComponent implements OnInit {
   @Input() display;
   @Input() infiniteScroll = true;
   @Input() current_data;
-  // preview_image used only for showing live preview when uploaded in UI
-  @Input() preview_image;
   @Output() closeContent = new EventEmitter<Boolean>();
   current_index = 0;
   showModal = false;

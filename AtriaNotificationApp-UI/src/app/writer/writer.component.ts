@@ -67,7 +67,7 @@ export class WriterComponent implements OnInit {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (a: any) => {
-        this.preview_image = a.target.result;
+        this.user_content.image = a.target.result;
       };
       reader.readAsDataURL(file);
       this.image_file = e.target.files[0];
@@ -92,11 +92,7 @@ export class WriterComponent implements OnInit {
     };
 
     if (this.edit) {
-      if (this.preview_image) {
-        upload(this.updateContentRequest.bind(this));
-      } else {
         this.updateContentRequest();
-      }
     } else {
       upload(this.postContentRequest.bind(this));
     }
