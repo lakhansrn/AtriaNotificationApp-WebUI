@@ -92,6 +92,7 @@ export class WriterComponent implements OnInit {
     };
 
     if (this.edit) {
+        this.loaderService.setLoader();
         this.updateContentRequest();
     } else {
       upload(this.postContentRequest.bind(this));
