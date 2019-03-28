@@ -8,14 +8,13 @@ import { EventService, ImageUploadService, UserService, LoaderService, ToastServ
   styleUrls: ['./writer.component.css']
 })
 export class WriterComponent implements OnInit {
-  user_content: Content;
-  empty_content: Content = {
+  user_content: Content = {
     id: '00000000-0000-0000-0000-000000000000',
     title: '',
-    posted: new Date(),
+    posted: new Date,
     image: '',
     postedBy: {
-      id: '00000000-0000-0000-0000-000000000000',
+      id: '',
       name: '',
       department: '',
       email: '',
@@ -28,7 +27,9 @@ export class WriterComponent implements OnInit {
 
   @Input() event_announcement_id;
   @Input() set content(content: Content) {
-    this.user_content = content || this.empty_content;
+    if (content != null) {
+      this.user_content = content;
+    }
   }
   @Input() edit = false;
   @Output() clearInputChoices = new EventEmitter();
@@ -52,12 +53,19 @@ export class WriterComponent implements OnInit {
       .subscribe(res => {
         this.loaderService.clearLoader();
         if (res) {
-          const { firstName, lastName, department, email, pno } = res;
-          this.empty_content.postedBy.name = firstName + ' ' + lastName;
-          this.empty_content.postedBy.department = department;
-          this.empty_content.postedBy.email = email;
-          this.empty_content.postedBy.pno = pno;
-          console.log(this.user_content);
+          // set the current user updating the content
+          const { firstName, lastName, id, department, pno, email } = res;
+          const name = firstName + ' ' + lastName;
+          const postedBy = {
+            department,
+            email,
+            id,
+            pno,
+            name
+          };
+          this.user_content.postedBy = postedBy;
+
+          console.log('current user is ', this.user_content);
         }
       });
   }
@@ -104,11 +112,11 @@ export class WriterComponent implements OnInit {
       .subscribe(result => {
         this.loaderService.clearLoader();
         this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Content Posted!'});
-        this.user_content = null;
       });
   }
 
   updateContentRequest() {
+    // send the content to update
     this.eventService.updateContent(this.event_announcement_id, this.user_content)
     .subscribe(result => {
       this.loaderService.clearLoader();
