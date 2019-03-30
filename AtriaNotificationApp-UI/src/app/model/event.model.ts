@@ -7,4 +7,6 @@ export class Event {
     announcements: Announcement[];
     description: string;
     showAsBanner: boolean;
+    dateCreatedOn: Date;
+    dateModifiedOn: Date;
 }

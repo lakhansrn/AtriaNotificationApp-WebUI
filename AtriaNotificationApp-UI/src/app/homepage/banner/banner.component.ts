@@ -28,7 +28,11 @@ export class BannerComponent implements OnInit {
     this.loaderService.setLoader();
     this.bannerService.getBanners().subscribe(banners => {
       this.loaderService.clearLoader();
-      this.bannerEvents = banners;
+      this.bannerEvents = banners.sort(function(a, b) {
+        const aDate = a.dateModifiedOn || a.dateCreatedOn;
+        const bDate = b.dateModifiedOn || b.dateCreatedOn;
+        return new Date(bDate).getTime() - new Date(aDate).getTime();
+      });
     });
   }
 }
