@@ -9,6 +9,7 @@
       [style]="{'text-transform': 'capitalize'}" (onSelect)="chooseEvent()"></p-autoComplete>
 
     <div class="my-3" *ngIf="!event_panel">
+      <button class="btn btn-sm btn-danger mr-2" *ngIf="edit" (click)="deleteEvent()">Delete Event</button>
       <button class="btn btn-sm btn-info mr-2" *ngIf="edit" (click)="editEvent()">Edit Event</button>
       <button class="btn btn-sm btn-primary" (click)="addEvent()">Add Event</button>
     </div>
@@ -56,3 +57,5 @@
   <app-announcement-creation
   (updatedAnnouncements)="onUpdatedAnnouncements($event)"></app-announcement-creation>
 </div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="80%"></p-confirmDialog>

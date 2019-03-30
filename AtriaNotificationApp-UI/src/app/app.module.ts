@@ -49,8 +49,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AnnouncerRegistrationComponent } from './registration/announcer/announcer.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -98,12 +99,13 @@ import { MessageService } from 'primeng/api';
     ToastModule,
     BlockUIModule,
     ProgressSpinnerModule,
+    ConfirmDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     MessageService,
-
+    ConfirmationService,
   ],
   bootstrap: [AppComponent]
 })

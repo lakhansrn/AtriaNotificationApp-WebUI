@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Event, Announcement } from '../../model';
 import { EventService, ImageUploadService, LoaderService, ToastService } from '../../_services';
 import { EventAnnouncementCreationService } from '../service/event-announcement-creation.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-events-annoucements-creation',
   templateUrl: './events-annoucements-creation.component.html',
-  styleUrls: ['./events-annoucements-creation.component.css']
+  styleUrls: ['./events-annoucements-creation.component.css'],
+  providers: [ConfirmationService]
 })
 export class EventsAnnoucementsCreationComponent implements OnInit {
 
@@ -36,8 +38,9 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     private imageUploadService: ImageUploadService,
     private loaderService: LoaderService,
     private toastService: ToastService,
-    private eventAnnouncementService: EventAnnouncementCreationService
-    ) { }
+    private eventAnnouncementService: EventAnnouncementCreationService,
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit() {
     this.getEvents();
@@ -54,7 +57,7 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
             this.eventData.event_banner = img_path;
             uploadContent();
           } else {
-            this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
+            this.toastService.setToastMsg({ key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image' });
             this.loaderService.clearLoader();
           }
         });
@@ -106,10 +109,10 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   }
 
   onUpdatedAnnouncements(event_id) {
-    const updateAnnouncementContents = (id) =>  {
+    const updateAnnouncementContents = (id) => {
       this.all_announcement = this.all_events
-      .filter(val => val.id === id)
-      .map(event => event.announcements)[0];
+        .filter(val => val.id === id)
+        .map(event => event.announcements)[0];
       this.eventAnnouncementService.setAnnouncements(this.all_announcement);
     };
 
@@ -144,19 +147,36 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
   uploadEvent() {
     this.eventService.postEvent(this.eventData)
       .subscribe(res => {
-        this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Event Uploaded'});
+        this.toastService.setToastMsg({ key: 'alert', severity: 'success', summary: 'Success', detail: 'Event Uploaded' });
         this.loaderService.clearLoader();
         this.getEvents();
       });
   }
 
+  deleteEvent() {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      accept: () => {
+        this.event = null;
+        // Actual logic to perform a confirmation
+        this.eventService.deleteEvent(this.eventData.id)
+          .subscribe(res => {
+            this.loaderService.setLoader();
+            this.edit = false;
+            this.loaderService.clearLoader();
+            this.getEvents();
+          });
+      }
+    });
+  }
+
   updateEvent() {
     this.eventService.updateEvent(this.eventData)
-    .subscribe(res => {
-      this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Updated', detail: 'Event Updated'});
-      this.loaderService.clearLoader();
-      this.getEvents();
-    });
+      .subscribe(res => {
+        this.toastService.setToastMsg({ key: 'alert', severity: 'success', summary: 'Updated', detail: 'Event Updated' });
+        this.loaderService.clearLoader();
+        this.getEvents();
+      });
   }
 
   clearInput() {

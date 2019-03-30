@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Event } from '../model/event.model';
 import { Content } from '../model/content.model';
 import { EventAnnouncementID } from '../model/event-announcement-id.model';
@@ -26,6 +26,15 @@ export class EventService {
     return this.http.post(`${environment.apiEndPoint}/api/event`, event)
     .pipe(
       catchError(this.handleError('postEvent', []))
+    );
+  }
+
+  deleteEvent(eventid) {
+    const params = new HttpParams().set('guid', eventid);
+
+    return this.http.delete(`${environment.apiEndPoint}/api/event`, { params })
+    .pipe(
+      catchError(this.handleError('deleteEvent', []))
     );
   }
 
