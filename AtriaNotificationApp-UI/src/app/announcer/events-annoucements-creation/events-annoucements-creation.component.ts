@@ -22,7 +22,9 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     announcements: [],
     description: '',
     showAsBanner: false,
-    id: '00000000-0000-0000-0000-000000000000'
+    id: '00000000-0000-0000-0000-000000000000',
+    dateCreatedOn: new Date(),
+    dateModifiedOn: new Date()
   };
   event_suggestions: Event[];
 
