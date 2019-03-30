@@ -17,8 +17,8 @@
   </div>
   <div class="form-group">
     <label class="form-bar mb-0">Description: </label>
-    <md-editor name="Content" [preRender]="preRenderFunc" [(ngModel)]="user_content.description" [height]="'400px'" [mode]="mode"
-      [options]="options" required maxlength="500"></md-editor>
+    <md-editor name="Content" [(ngModel)]="user_content.description" [height]="'400px'"
+       required maxlength="500"></md-editor>
   </div>
   <div class="form-group">
     <button class="btn btn-info btn-sm mr-2" type="button" (click)="showPreview = !showPreview">Show preview</button>
