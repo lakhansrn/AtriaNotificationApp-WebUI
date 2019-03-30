@@ -26,12 +26,18 @@ export class EventCarouselComponent implements OnInit {
     this.loaderService.setLoader();
     this.eventService.getEvents().subscribe(events => {
       this.loaderService.clearLoader();
-      this.events = events.sort(function(a, b) {
-        const aDate = a.dateModifiedOn || a.dateCreatedOn;
-        const bDate = b.dateModifiedOn || b.dateCreatedOn;
-        return new Date(bDate).getTime() - new Date(aDate).getTime();
-      });
+      // sort events
+      this.events = events.sort(this.sortByDate);
+      // sort announcements
+      this.events.map(event => event.announcements.sort(this.sortByDate)
+      );
     });
+  }
+
+  sortByDate(a: any, b: any) {
+    const aDate = a.dateModifiedOn || a.dateCreatedOn;
+    const bDate = b.dateModifiedOn || b.dateCreatedOn;
+    return new Date(bDate).getTime() - new Date(aDate).getTime();
   }
 
   getMockEvents() {
