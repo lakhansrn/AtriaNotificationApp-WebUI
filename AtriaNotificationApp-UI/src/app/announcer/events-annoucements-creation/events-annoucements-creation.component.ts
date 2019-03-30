@@ -70,7 +70,6 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
         this.uploadEvent();
       }
     }
-    this.getEvents();
   }
 
   getEvents(callback?) {
@@ -145,6 +144,7 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
       .subscribe(res => {
         this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Event Uploaded'});
         this.loaderService.clearLoader();
+        this.getEvents();
       });
   }
 
@@ -153,6 +153,7 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     .subscribe(res => {
       this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Updated', detail: 'Event Updated'});
       this.loaderService.clearLoader();
+      this.getEvents();
     });
   }
 

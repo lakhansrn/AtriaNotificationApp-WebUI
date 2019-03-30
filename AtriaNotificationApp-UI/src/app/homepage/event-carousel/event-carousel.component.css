@@ -2,3 +2,8 @@
     height: 250px;
     cursor: pointer;
 }
+.event-carousel-img {
+    object-fit: contain;
+    height: 180px;
+    width: 270px;
+}

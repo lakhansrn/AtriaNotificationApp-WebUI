@@ -5,7 +5,7 @@
         <div (click)="showContent(announcement.id)" class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">
           <div class="ui-grid-row">
             <div class="ui-grid-col-12 text-center">
-              <img [src]="announcement.img" style="width: 200px;">
+              <img *ngIf="announcement.img.length > 0" [src]="announcement.img" class="event-carousel-img">
             </div>
           </div>
           <div class="ui-grid-row" style="text-align: center; font-size: 1.5rem; text-transform: capitalize; padding-top: 10px;">     

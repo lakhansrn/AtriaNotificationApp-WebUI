@@ -12,9 +12,6 @@
       <div *ngIf="current_data.image">
         <img (click)="show_modal()" [src]="current_data.image" class="img-fluid mt-2 content-image">
       </div>
-      <div *ngIf="preview_image">
-        <img (click)="show_modal()" [src]="preview_image" alt="preview_image" class="img-fluid mt-2 content-image">
-      </div>
       <div class="my-4">
         <div markdown [data]="current_data.description"></div>
       </div>
