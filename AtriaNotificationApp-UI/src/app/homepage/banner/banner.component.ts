@@ -33,6 +33,12 @@ export class BannerComponent implements OnInit {
         const bDate = b.dateModifiedOn || b.dateCreatedOn;
         return new Date(bDate).getTime() - new Date(aDate).getTime();
       });
+      this.bannerEvents.map(banner => {
+        if (banner.img.length > 0) {
+          const img = banner.img.split('upload/');
+          banner.img = img[0] + 'upload/q_auto/' + img[1];
+        }
+      });
     });
   }
 }

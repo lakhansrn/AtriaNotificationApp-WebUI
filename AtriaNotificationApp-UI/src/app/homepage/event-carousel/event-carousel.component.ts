@@ -29,8 +29,15 @@ export class EventCarouselComponent implements OnInit {
       // sort events
       this.events = events.sort(this.sortByDate);
       // sort announcements
-      this.events.map(event => event.announcements.sort(this.sortByDate)
-      );
+      this.events.map(event => {
+        event.announcements.sort(this.sortByDate);
+        event.announcements.map(announcement => {
+          if (announcement.img.length > 0) {
+            const img = announcement.img.split('upload/');
+            announcement.img = img[0] + 'upload/q_auto/' + img[1];
+          }
+        });
+      });
     });
   }
 
