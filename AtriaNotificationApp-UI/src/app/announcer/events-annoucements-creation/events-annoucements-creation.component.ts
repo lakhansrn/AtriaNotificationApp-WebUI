@@ -26,7 +26,8 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     showAsBanner: false,
     id: '00000000-0000-0000-0000-000000000000',
     dateCreatedOn: new Date(),
-    dateModifiedOn: new Date()
+    dateModifiedOn: new Date(),
+    dateSchedule: null
   };
   event_suggestions: Event[];
 
@@ -105,6 +106,7 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     this.edit = true;
     this.imgFile = null;
     this.eventAnnouncementService.setAnnouncements(this.all_announcement);
+    this.event.dateSchedule = new Date(this.event.dateSchedule);
     Object.assign(this.eventData, this.event);
   }
 
@@ -137,6 +139,10 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
     this.edit = true;
     Object.assign(this.eventData, this.event);
     this.event_panel = true;
+  }
+
+  get getScheduleDate() {
+    return new Date(this.eventData.dateSchedule);
   }
 
   setImage(e) {
@@ -179,12 +185,17 @@ export class EventsAnnoucementsCreationComponent implements OnInit {
       });
   }
 
+  checkUnique() {
+    return this.all_events.some(event => event.event_name.toLowerCase() === this.eventData.event_name.toLowerCase());
+  }
+
   clearInput() {
     this.eventData.event_banner = '';
     this.eventData.event_name = '';
     this.eventData.announcements = [];
     this.eventData.description = '';
     this.eventData.showAsBanner = false;
+    this.eventData.dateSchedule = null;
     this.eventData.id = '00000000-0000-0000-0000-000000000000';
     this.imgFile = null;
   }

@@ -50,6 +50,31 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+.social-icons-circle {
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: auto 5px;
+    justify-content: center;
+}
+.fb-bg-color {
+    background: #4469a6;
+}
+.twitter-bg-color {
+    background: #00b6ed;
+}
+.linkein-bg-color {
+    background: #0485b2;
+}
+
 
 @media only screen and (min-width: 700px) {
     .mask {
