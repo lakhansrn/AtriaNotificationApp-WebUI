@@ -25,8 +25,7 @@ export class AnnouncementCreationComponent implements OnInit {
     title: '',
     img: '',
     description: '',
-    posted: '',
-    dateSchedule: null
+    posted: ''
   };
 
   constructor(
@@ -90,7 +89,6 @@ export class AnnouncementCreationComponent implements OnInit {
 
   chooseAnnouncement() {
     this.edit = true;
-    this.announcement.dateSchedule = new Date(this.announcement.dateSchedule);
     Object.assign(this.announcementData, this.announcement);
   }
 
@@ -116,10 +114,6 @@ export class AnnouncementCreationComponent implements OnInit {
     this.imgFile = e.target.files[0];
   }
 
-  get getScheduleDate() {
-    return new Date(this.announcementData.dateSchedule);
-  }
-
   updateAnnouncement() {
     this.eventService.updateAnnouncement(this.eventid, this.announcementData)
     .subscribe(res => {
@@ -138,15 +132,10 @@ export class AnnouncementCreationComponent implements OnInit {
     });
   }
 
-  checkUnique() {
-    return this.all_announcement.some(announcement => announcement.title.toLowerCase() === this.announcementData.title.toLowerCase());
-  }
-
   clearInput() {
     this.announcementData.title = '';
     this.announcementData.description = '';
     this.announcementData.posted = '';
-    this.announcementData.dateSchedule = null;
     this.announcementData.id = '00000000-0000-0000-0000-000000000000';
     this.announcementData.img = '';
     this.imgFile = null;

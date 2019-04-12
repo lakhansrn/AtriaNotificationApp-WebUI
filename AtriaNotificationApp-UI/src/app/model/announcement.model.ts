@@ -4,5 +4,4 @@ export class Announcement {
     img: string;
     description: string;
     posted: string;
-    dateSchedule: Date;
 }

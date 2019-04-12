@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
-@import '~open-iconic/font/css/open-iconic-bootstrap.css';
 :root{
     --atria-primary: #1976d2;
     --navbar-height: 70px;
@@ -24,7 +23,4 @@ blockquote {
 }
 blockquote ol:last-child, blockquote p:last-child, blockquote ul:last-child {
     margin-bottom: 0;
-}
-.dl-abdtp-view-label {
-    margin: auto 5px !important;
 }
