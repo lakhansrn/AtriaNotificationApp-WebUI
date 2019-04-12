@@ -50,8 +50,10 @@ import { AnnouncerRegistrationComponent } from './registration/announcer/announc
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { TodayUpcomingComponent } from './homepage/today-upcoming/today-upcoming.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     AnnouncerRegistrationComponent,
     LoaderComponent,
     ToastComponent,
+    TodayUpcomingComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +103,8 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     BlockUIModule,
     ProgressSpinnerModule,
     ConfirmDialogModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

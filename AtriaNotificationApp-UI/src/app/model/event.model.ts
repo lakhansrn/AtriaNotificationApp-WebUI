@@ -9,4 +9,5 @@ export class Event {
     showAsBanner: boolean;
     dateCreatedOn: Date;
     dateModifiedOn: Date;
+    dateSchedule: Date;
 }
