@@ -1,11 +1,11 @@
-<div *ngFor="let event of events;">
+<div *ngFor="let board of boards;">
   <div class="pb-4">
-    <p-carousel easing="easeOutStrong" [headerText]="event.event_name | titlecase" [value]="event.announcements">
+    <p-carousel easing="easeOutStrong" [headerText]="board.board_name | titlecase" [value]="board.announcements">
       <ng-template let-announcement pTemplate="item">
         <div (click)="showContent(announcement.id)" class="ui-grid ui-grid-responsive" style="display: flex; flex-flow: column; justify-content: center;">
           <div class="ui-grid-row">
             <div class="ui-grid-col-12 text-center">
-              <img *ngIf="announcement.img.length > 0" [src]="announcement.img" class="event-carousel-img">
+              <img *ngIf="announcement.img.length > 0" [src]="announcement.img" class="board-carousel-img">
             </div>
           </div>
           <div class="ui-grid-row" style="text-align: center; font-size: 1.5rem; text-transform: capitalize; padding-top: 10px;">     

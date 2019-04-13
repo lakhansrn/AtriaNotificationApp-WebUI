@@ -6,7 +6,7 @@ import { EventRegistrationComponent } from './event-registration/event-registrat
 import { LoginComponent } from './login/login.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { RegisterWritersComponent } from './announcer/register-writers/register-writers.component';
-import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
+import { BoardsAnnoucementsCreationComponent } from './announcer/boards-annoucements-creation/boards-annoucements-creation.component';
 import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'eventCreation',
-    component: EventsAnnoucementsCreationComponent,
+    component: BoardsAnnoucementsCreationComponent,
     canActivate: [RoleGuard],
     data: {
       expectedRole: 'announcer'

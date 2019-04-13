@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Announcement } from '../../model/announcement.model';
-import { EventService, ImageUploadService, LoaderService, ToastService } from '../../_services';
-import { EventAnnouncementCreationService } from '../service/event-announcement-creation.service';
+import { BoardService, ImageUploadService, LoaderService, ToastService } from '../../_services';
+import { BoardAnnouncementCreationService } from '../service/board-announcement-creation.service';
 
 @Component({
   selector: 'app-announcement-creation',
@@ -29,22 +29,22 @@ export class AnnouncementCreationComponent implements OnInit {
   };
 
   constructor(
-    private eventService: EventService,
+    private boardService: BoardService,
     private imageUploadService: ImageUploadService,
     private loaderService: LoaderService,
     private toastService: ToastService,
-    private eventAnnouncementService: EventAnnouncementCreationService
+    private boardAnnouncementService: BoardAnnouncementCreationService
   ) { }
 
   ngOnInit() {
-    this.eventAnnouncementService.announcements.subscribe(res => {
+    this.boardAnnouncementService.announcements.subscribe(res => {
       this.all_announcement = res;
       this.announcement = null;
       this.edit = false;
       this.announcement_panel = false;
       this.announcement_suggestions = res;
     });
-    this.eventAnnouncementService.eventID.subscribe(res => {
+    this.boardAnnouncementService.boardID.subscribe(res => {
       this.eventid = res;
     });
   }
@@ -115,7 +115,7 @@ export class AnnouncementCreationComponent implements OnInit {
   }
 
   updateAnnouncement() {
-    this.eventService.updateAnnouncement(this.eventid, this.announcementData)
+    this.boardService.updateAnnouncement(this.eventid, this.announcementData)
     .subscribe(res => {
       this.loaderService.clearLoader();
       this.updatedAnnouncements.emit(this.eventid);
@@ -124,7 +124,7 @@ export class AnnouncementCreationComponent implements OnInit {
   }
 
   uploadAnnouncement() {
-    this.eventService.postAnnouncement(this.eventid, this.announcementData)
+    this.boardService.postAnnouncement(this.eventid, this.announcementData)
     .subscribe(res => {
       this.loaderService.clearLoader();
       this.updatedAnnouncements.emit(this.eventid);

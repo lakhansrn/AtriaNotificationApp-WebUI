@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Event } from '../../model/event.model';
+import { Board } from '../../model/board.model';
 import { Observable, of } from 'rxjs';
-import { mockEvents } from '../mock-events';
+// import { mockEvents } from '../mock-events';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -9,25 +9,25 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<Event[]> {
+  getBoards(): Observable<Board[]> {
     // return of(mockEvents);
-    return this.http.get<Event[]>(`${environment.apiEndPoint}/api/event`)
+    return this.http.get<Board[]>(`${environment.apiEndPoint}/api/board`)
       .pipe(
         tap(banners => {
-          this.log('fetched Event');
+          this.log('fetched Board');
           console.log(banners);
         }),
-        catchError(this.handleError('getEvents', []))
+        catchError(this.handleError('getBoards', []))
       );
   }
 
-  getMockEvents(): Observable<Event[]> {
-    return of(mockEvents);
-  }
+  // getMockEvents(): Observable<Board[]> {
+  //   return of(mockEvents);
+  // }
 
   private log(arg0: string): any {
     console.log(arg0);

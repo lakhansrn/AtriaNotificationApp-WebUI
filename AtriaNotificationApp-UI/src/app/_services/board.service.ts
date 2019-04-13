@@ -2,65 +2,65 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Event } from '../model/event.model';
+import { Board } from '../model/board.model';
 import { Content } from '../model/content.model';
-import { EventAnnouncementID } from '../model/event-announcement-id.model';
+import { BoardAnnouncementID } from '../model/board-announcement-id.model';
 import { environment } from '../../environments/environment';
 import { Announcement } from '../model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents() {
-    return this.http.get<Event[]>(`${environment.apiEndPoint}/api/event`)
+  getBoards() {
+    return this.http.get<Board[]>(`${environment.apiEndPoint}/api/board`)
     .pipe(
-      catchError(this.handleError('getEvents', []))
+      catchError(this.handleError('getBoards', []))
     );
   }
 
-  postEvent(event: Event) {
-    return this.http.post(`${environment.apiEndPoint}/api/event`, event)
+  postBoard(board: Board) {
+    return this.http.post(`${environment.apiEndPoint}/api/board`, board)
     .pipe(
-      catchError(this.handleError('postEvent', []))
+      catchError(this.handleError('postBoard', []))
     );
   }
 
-  deleteEvent(eventid) {
+  deleteBoard(eventid) {
     const params = new HttpParams().set('guid', eventid);
 
-    return this.http.delete(`${environment.apiEndPoint}/api/event`, { params })
+    return this.http.delete(`${environment.apiEndPoint}/api/board`, { params })
     .pipe(
-      catchError(this.handleError('deleteEvent', []))
+      catchError(this.handleError('deleteBoard', []))
     );
   }
 
-  updateEvent(event: Event) {
-    return this.http.put(`${environment.apiEndPoint}/api/event`, event)
+  updateBoard(board: Board) {
+    return this.http.put(`${environment.apiEndPoint}/api/board`, board)
     .pipe(
-      catchError(this.handleError('updateEvent', []))
+      catchError(this.handleError('updateBoard', []))
     );
   }
 
   postAnnouncement(eventid: string, announcement: Announcement) {
-    return this.http.post(`${environment.apiEndPoint}/api/event/${eventid}/Announcement`, announcement)
+    return this.http.post(`${environment.apiEndPoint}/api/board/${eventid}/Announcement`, announcement)
     .pipe(
-      catchError(this.handleError('updateEvent', []))
+      catchError(this.handleError('updateBoard', []))
     );
   }
 
   updateAnnouncement(eventid: string, announcement: Announcement) {
-    return this.http.put(`${environment.apiEndPoint}/api/event/${eventid}/Announcement`, announcement)
+    return this.http.put(`${environment.apiEndPoint}/api/board/${eventid}/Announcement`, announcement)
     .pipe(
       catchError(this.handleError('updateAnnouncement', []))
     );
   }
 
   getContents(id: string): Observable<Content[]> {
-    return this.http.get<Content[]>(`${environment.apiEndPoint}/api/event/Announcement/${id.toString()}/Content`)
+    return this.http.get<Content[]>(`${environment.apiEndPoint}/api/board/Announcement/${id.toString()}/Content`)
       .pipe(
         tap(contents => {
           this.log('fetched Contents');
@@ -70,20 +70,20 @@ export class EventService {
       );
   }
 
-  postContent(event_announcement_id: EventAnnouncementID, content: Content) {
-    const event_id = event_announcement_id.event_id;
+  postContent(event_announcement_id: BoardAnnouncementID, content: Content) {
+    const board_id = event_announcement_id.board_id;
     const announcement_id = event_announcement_id.announcement_id;
-    return this.http.post(`${environment.apiEndPoint}/api/event/${event_id}/announcement/${announcement_id}/content`, content)
+    return this.http.post(`${environment.apiEndPoint}/api/board/${board_id}/announcement/${announcement_id}/content`, content)
     .pipe(
       catchError(this.handleError('postContent', []))
     );
   }
 
-  updateContent(event_announcement_id: EventAnnouncementID, content: Content) {
-    const event_id = event_announcement_id.event_id;
+  updateContent(event_announcement_id: BoardAnnouncementID, content: Content) {
+    const board_id = event_announcement_id.board_id;
     const announcement_id = event_announcement_id.announcement_id;
     const content_id = event_announcement_id.content_id;
-    return this.http.put(`${environment.apiEndPoint}/api/event/${event_id}/Announcement/${announcement_id}/content/${content_id}`, content)
+    return this.http.put(`${environment.apiEndPoint}/api/board/${board_id}/Announcement/${announcement_id}/content/${content_id}`, content)
     .pipe(
       catchError(this.handleError('postContent', []))
     );
@@ -101,6 +101,6 @@ export class EventService {
   }
 
   private log(message: string) {
-    console.log(`Event Service: ${message}`);
+    console.log(`Board Service: ${message}`);
   }
 }

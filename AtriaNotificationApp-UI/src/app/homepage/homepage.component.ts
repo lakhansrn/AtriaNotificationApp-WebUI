@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../model/event.model';
+import { Board } from '../model/board.model';
 import { AnnouncementService } from './services/announcement.service';
 import { Content } from '../model/content.model';
 import { LoaderService, ToastService } from '../_services';
@@ -11,7 +11,7 @@ import { LoaderService, ToastService } from '../_services';
 })
 export class HomepageComponent implements OnInit {
 
-  events: Event[];
+  boards: Board[];
   announcementID: string;
   contents: Content[];
   display: boolean;
@@ -21,11 +21,11 @@ export class HomepageComponent implements OnInit {
     private loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.getEvents();
+    this.getBoards();
   }
 
-  getEvents() {
-    // this.eventService.getEvents().subscribe(events => this.events = events);
+  getBoards() {
+    // this.boardService.getBoards().subscribe(boards => this.boards = boards);
   }
 
   showContent(id: string) {
