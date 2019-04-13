@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Event } from '../../model/event.model';
-import { EventService, LoaderService } from '../../_services';
+import { Board } from '../../model/board.model';
+import { BoardService, LoaderService } from '../../_services';
 import { Announcement } from '../../model/announcement.model';
 import { Content } from '../../model/content.model';
-import { EventAnnouncementID } from '../../model/event-announcement-id.model';
+import { BoardAnnouncementID } from '../../model/board-announcement-id.model';
 
 @Component({
   selector: 'app-content-creation',
@@ -12,10 +12,10 @@ import { EventAnnouncementID } from '../../model/event-announcement-id.model';
 })
 export class ContentCreationComponent implements OnInit {
 
-  all_events: Event[];
-  event: Event;
-  event_suggestions: Event[];
-  show_event_box = true;
+  all_boards: Board[];
+  board: Board;
+  board_suggestions: Board[];
+  show_board_box = true;
 
   all_announcement: Announcement[];
   announcement: Announcement;
@@ -25,9 +25,9 @@ export class ContentCreationComponent implements OnInit {
   content: Content;
   content_suggestions: Content[];
 
-  // holds event and announcement ids
-  event_announcement_id: EventAnnouncementID = {
-    event_id: '',
+  // holds board and announcement ids
+  board_announcement_id: BoardAnnouncementID = {
+    board_id: '',
     announcement_id: '',
     content_id: ''
   };
@@ -37,38 +37,38 @@ export class ContentCreationComponent implements OnInit {
 
   @Output() open_content_panel = new EventEmitter<Object>();
 
-  constructor(private eventService: EventService,
+  constructor(private boardService: BoardService,
     private loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.getEvents();
+    this.getBoards();
   }
 
-  getEvents() {
+  getBoards() {
     this.loaderService.setLoader();
-    this.eventService.getEvents().subscribe((events) => {
+    this.boardService.getBoards().subscribe((boards) => {
       this.loaderService.clearLoader();
-      this.all_events = events;
-      // console.log(this.all_events);
-      this.event_suggestions = this.all_events;
+      this.all_boards = boards;
+      // console.log(this.all_boards);
+      this.board_suggestions = this.all_boards;
     });
   }
 
-  searchEvent(e) {
+  searchBoard(e) {
     if (e.query === '') {
-      this.event_suggestions = this.all_events;
+      this.board_suggestions = this.all_boards;
     }
 
-    this.event_suggestions = this.all_events
-      .filter(val => val.event_name.toLowerCase().indexOf(e.query.toLowerCase()) > -1);
+    this.board_suggestions = this.all_boards
+      .filter(val => val.board_name.toLowerCase().indexOf(e.query.toLowerCase()) > -1);
 
   }
 
-  chooseEvent() {
-    this.show_event_box = false;
+  chooseBoard() {
+    this.show_board_box = false;
     this.announcement = null;
-    this.all_announcement = this.event.announcements;
-    this.event_announcement_id.event_id = this.event.id;
+    this.all_announcement = this.board.announcements;
+    this.board_announcement_id.board_id = this.board.id;
     this.announcement_suggestions = this.all_announcement;
   }
 
@@ -81,7 +81,7 @@ export class ContentCreationComponent implements OnInit {
   }
 
   chooseAnnouncement() {
-    this.event_announcement_id.announcement_id = this.announcement.id;
+    this.board_announcement_id.announcement_id = this.announcement.id;
     this.content = null;
     this.editContent();
   }
@@ -94,7 +94,7 @@ export class ContentCreationComponent implements OnInit {
 
   editContent() {
     this.loaderService.setLoader();
-    this.eventService.getContents(this.event_announcement_id.announcement_id)
+    this.boardService.getContents(this.board_announcement_id.announcement_id)
     .subscribe(res => {
       this.loaderService.clearLoader();
       this.all_content = res;
@@ -111,7 +111,7 @@ export class ContentCreationComponent implements OnInit {
   }
 
   chooseContent() {
-    this.event_announcement_id.content_id = this.content.id;
+    this.board_announcement_id.content_id = this.content.id;
     this.editable = true;
     this.showContentPanel = true;
   }

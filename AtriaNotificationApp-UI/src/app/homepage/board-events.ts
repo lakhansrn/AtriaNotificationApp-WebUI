@@ -1,6 +1,6 @@
-import { Event } from '../model/event.model';
+import { Board } from '../model/board.model';
 
-export const mockEvents: Event[] = [
+export const mockBoards: Board[] = [
     // {
     //   event_name: 'dexterix',
     //   event_banner: 'https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',

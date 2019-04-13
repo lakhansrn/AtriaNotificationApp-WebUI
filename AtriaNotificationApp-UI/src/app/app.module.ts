@@ -36,13 +36,13 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { RegisterWritersComponent } from './announcer/register-writers/register-writers.component';
-import { EventsAnnoucementsCreationComponent } from './announcer/events-annoucements-creation/events-annoucements-creation.component';
+import { BoardsAnnoucementsCreationComponent } from './announcer/boards-annoucements-creation/boards-annoucements-creation.component';
 import { ApproveContentComponent } from './announcer/approve-content/approve-content.component';
 import { ContentCreationComponent } from './writer/content-creation/content-creation.component';
 import { SendApprovalComponent } from './writer/send-approval/send-approval.component';
 import { LoginComponent } from './login/login.component';
 import { AnnouncementCreationComponent } from './announcer/announcement-creation/announcement-creation.component';
-import { EventCarouselComponent } from './homepage/event-carousel/event-carousel.component';
+import { BoardCarouselComponent } from './homepage/board-carousel/board-carousel.component';
 import { BannerComponent } from './homepage/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -64,13 +64,13 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     WriterComponent,
     AnnouncementsComponent,
     RegisterWritersComponent,
-    EventsAnnoucementsCreationComponent,
+    BoardsAnnoucementsCreationComponent,
     ApproveContentComponent,
     ContentCreationComponent,
     SendApprovalComponent,
     LoginComponent,
     AnnouncementCreationComponent,
-    EventCarouselComponent,
+    BoardCarouselComponent,
     BannerComponent,
     ContentSidebarComponent,
     PageNotFoundComponent,

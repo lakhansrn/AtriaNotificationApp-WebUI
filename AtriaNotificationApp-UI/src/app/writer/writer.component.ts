@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Content } from '../model/content.model';
-import { EventService, ImageUploadService, UserService, LoaderService, ToastService } from '../_services';
+import { BoardService, ImageUploadService, UserService, LoaderService, ToastService } from '../_services';
 
 @Component({
   selector: 'app-writer',
@@ -25,7 +25,7 @@ export class WriterComponent implements OnInit {
     isActive: false,
   };
 
-  @Input() event_announcement_id;
+  @Input() board_announcement_id;
   @Input() set content(content: Content) {
     if (content != null) {
       this.user_content = content;
@@ -41,7 +41,7 @@ export class WriterComponent implements OnInit {
   profile_icon = 'https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest/scale-to-width-down/480?cb=20171030104015';
 
   constructor(private imageUploadService: ImageUploadService,
-    private eventService: EventService,
+    private boardService: BoardService,
     private loaderService: LoaderService,
     private toastService: ToastService,
     private userService: UserService) {
@@ -108,7 +108,7 @@ export class WriterComponent implements OnInit {
   }
 
   postContentRequest() {
-    this.eventService.postContent(this.event_announcement_id, this.user_content)
+    this.boardService.postContent(this.board_announcement_id, this.user_content)
       .subscribe(result => {
         this.loaderService.clearLoader();
         this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Content Posted!'});
@@ -117,7 +117,7 @@ export class WriterComponent implements OnInit {
 
   updateContentRequest() {
     // send the content to update
-    this.eventService.updateContent(this.event_announcement_id, this.user_content)
+    this.boardService.updateContent(this.board_announcement_id, this.user_content)
     .subscribe(result => {
       this.loaderService.clearLoader();
       this.toastService.setToastMsg({key: 'alert', severity: 'success', summary: 'Success', detail: 'Content Updated!'});

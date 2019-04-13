@@ -5,10 +5,10 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EventAnnouncementCreationService {
+export class BoardAnnouncementCreationService {
 
   announcements = new Subject<Announcement[]>();
-  eventID = new Subject<string>();
+  boardID = new Subject<string>();
 
   constructor() { }
 
@@ -16,8 +16,8 @@ export class EventAnnouncementCreationService {
     this.announcements.next(announcements);
   }
 
-  setEventID(id: string) {
-    this.eventID.next(id);
+  setBoardID(id: string) {
+    this.boardID.next(id);
   }
 
 }

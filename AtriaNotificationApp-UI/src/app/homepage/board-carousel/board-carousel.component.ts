@@ -1,37 +1,37 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { Event } from '../../model/event.model';
+import { BoardService } from '../services/board.service';
+import { Board } from '../../model/board.model';
 import { LoaderService } from '../../_services';
 
 @Component({
-  selector: 'app-event-carousel',
-  templateUrl: './event-carousel.component.html',
-  styleUrls: ['./event-carousel.component.css']
+  selector: 'app-board-carousel',
+  templateUrl: './board-carousel.component.html',
+  styleUrls: ['./board-carousel.component.css']
 })
-export class EventCarouselComponent implements OnInit {
+export class BoardCarouselComponent implements OnInit {
 
-  events: Event[];
+  boards: Board[];
   @Output() showcontent = new EventEmitter<string>();
 
-  constructor(private eventService: EventService,
+  constructor(private boardService: BoardService,
     private loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.getEvents();
+    this.getBoards();
     // Mock Events
     // this.getMockEvents();
   }
 
-  getEvents() {
+  getBoards() {
     this.loaderService.setLoader();
-    this.eventService.getEvents().subscribe(events => {
+    this.boardService.getBoards().subscribe(boards => {
       this.loaderService.clearLoader();
-      // sort events
-      this.events = events.sort(this.sortByDate);
+      // sort boards
+      this.boards = boards.sort(this.sortByDate);
       // sort announcements
-      this.events.map(event => {
-        event.announcements.sort(this.sortByDate);
-        event.announcements.map(announcement => {
+      this.boards.map(board => {
+        board.announcements.sort(this.sortByDate);
+        board.announcements.map(announcement => {
           if (announcement.img.length > 0) {
             const img = announcement.img.split('upload/');
             announcement.img = img[0] + 'upload/q_auto/' + img[1];
@@ -47,12 +47,12 @@ export class EventCarouselComponent implements OnInit {
     return new Date(bDate).getTime() - new Date(aDate).getTime();
   }
 
-  getMockEvents() {
-    this.eventService.getMockEvents().subscribe(events => {
-      this.events = events;
-      console.log(this.events);
-    });
-  }
+  // getMockEvents() {
+  //   this.boardService.getMockEvents().subscribe(boards => {
+  //     this.boards = boards;
+  //     console.log(this.boards);
+  //   });
+  // }
 
   showContent(id: string) {
     this.showcontent.emit(id);
