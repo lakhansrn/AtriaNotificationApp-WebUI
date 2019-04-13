@@ -8,10 +8,24 @@
         <img src="assets/logo-atria.ico" alt="Atria Institute of Technology" class="img-fluid">
       </a>
     </div>
-    <div class="ml-auto mr-2" *ngIf="!isLoggedIn">
+    <div class="social-icons ml-auto">
+      <a href="https://www.facebook.com/atria.edu" class="fb-bg-color social-icons-circle">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="https://twitter.com/atria_institute" class="twitter-bg-color social-icons-circle"> 
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/school/atria-institute-of-technology/about/" class="linkein-bg-color social-icons-circle">
+        <i class="fa fa-linkedin"></i>
+      </a>
+      <div class="mr-2 d-flex ml-1">
+          <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fatria.edu&width=100&layout=button_count&action=like&size=large&show_faces=false&share=false&height=21&appId" width="90" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      </div>
+    </div>
+    <div class="mr-2" *ngIf="!isLoggedIn">
       <button class="auth-btn" (click)="login()">Sign In</button>
     </div>
-    <div class="ml-auto mr-2" *ngIf="isLoggedIn">
+    <div class="mr-2" *ngIf="isLoggedIn">
       <button class="auth-btn" (click)="logout()">Log Out</button>
     </div>
   </div>

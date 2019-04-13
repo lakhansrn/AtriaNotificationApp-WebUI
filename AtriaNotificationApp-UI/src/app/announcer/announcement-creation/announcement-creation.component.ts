@@ -25,7 +25,8 @@ export class AnnouncementCreationComponent implements OnInit {
     title: '',
     img: '',
     description: '',
-    posted: ''
+    posted: '',
+    showAsBanner: false,
   };
 
   constructor(

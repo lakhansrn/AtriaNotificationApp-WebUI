@@ -4,4 +4,5 @@ export class Announcement {
     img: string;
     description: string;
     posted: string;
+    showAsBanner: boolean;
 }
