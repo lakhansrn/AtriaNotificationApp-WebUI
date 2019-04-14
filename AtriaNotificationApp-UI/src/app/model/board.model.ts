@@ -9,4 +9,6 @@ export class Board {
     showAsBanner: boolean;
     dateCreatedOn: Date;
     dateModifiedOn: Date;
+    isFixed: boolean;
+    order: number;
 }

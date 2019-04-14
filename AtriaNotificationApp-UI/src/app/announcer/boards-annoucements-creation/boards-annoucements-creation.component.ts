@@ -26,9 +26,12 @@ export class BoardsAnnoucementsCreationComponent implements OnInit {
     showAsBanner: false,
     id: '00000000-0000-0000-0000-000000000000',
     dateCreatedOn: new Date(),
-    dateModifiedOn: new Date()
+    dateModifiedOn: new Date(),
+    isFixed: false,
+    order: null,
   };
   board_suggestions: Board[];
+  order_limit = 10;
 
   all_announcement: Announcement[];
 
@@ -44,6 +47,10 @@ export class BoardsAnnoucementsCreationComponent implements OnInit {
 
   ngOnInit() {
     this.getBoards();
+  }
+
+  orderArray(n: number) {
+    return Array(n);
   }
 
   boardSubmit() {
@@ -186,6 +193,8 @@ export class BoardsAnnoucementsCreationComponent implements OnInit {
     this.boardData.description = '';
     this.boardData.showAsBanner = false;
     this.boardData.id = '00000000-0000-0000-0000-000000000000';
+    this.boardData.isFixed = false;
+    this.boardData.order = null;
     this.imgFile = null;
   }
 

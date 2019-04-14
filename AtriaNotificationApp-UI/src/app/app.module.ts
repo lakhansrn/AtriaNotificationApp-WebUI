@@ -52,6 +52,7 @@ import { ToastComponent } from './components/toast/toast.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { FixedBoardsComponent } from './homepage/fixed-boards/fixed-boards.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     AnnouncerRegistrationComponent,
     LoaderComponent,
     ToastComponent,
+    FixedBoardsComponent,
   ],
   imports: [
     BrowserModule,
