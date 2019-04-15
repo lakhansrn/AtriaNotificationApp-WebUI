@@ -9,7 +9,7 @@
       [style]="{'text-transform': 'capitalize'}" (onSelect)="chooseBoard()"></p-autoComplete>
 
     <div class="my-3" *ngIf="!board_panel">
-      <button class="btn btn-sm btn-danger mr-2" *ngIf="edit" (click)="deleteBoard()">Delete Board</button>
+      <button class="btn btn-sm btn-danger mr-2" *ngIf="edit && !boardData.isFixed" (click)="deleteBoard()">Delete Board</button>
       <button class="btn btn-sm btn-info mr-2" *ngIf="edit" (click)="editBoard()">Edit Board</button>
       <button class="btn btn-sm btn-primary" (click)="addBoard()">Add Board</button>
     </div>
@@ -24,6 +24,28 @@
     <div class="form-group">
       <label for="description">Description:</label>
       <input type="text" name="description" [(ngModel)]="boardData.description" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="isfixed">Is Fixed:</label>
+      <div>
+        <div class="form-check-inline">
+          <label class="form-check-label" for="isFixedTrue">
+            <input type="radio" class="form-check-input" name="isFixed" [(ngModel)]="boardData.isFixed" [value]="true">Yes
+          </label>
+          <label class="form-check-label" for="isFixedFalse">
+            <input type="radio" class="form-check-input ml-2" name="isFixed" [(ngModel)]="boardData.isFixed" [value]="false">No
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="boardData.isFixed">
+      <label for="boardOrder">Set Order:</label> <br/>
+      <select name="boardOrder" [(ngModel)]="boardData.order" class="form-control">
+        <option value="null">None</option>
+        <option [value]="i+1" *ngFor="let o of orderArray(order_limit); let i = index;">{{i+1}}</option>
+      </select>
     </div>
 
     <div class="form-group">

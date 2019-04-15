@@ -22,6 +22,13 @@ export class BoardService {
     );
   }
 
+  getFixedBoards() {
+    return this.http.get<Board[]>(`${environment.apiEndPoint}/api/board/FixedBoards`)
+    .pipe(
+      catchError(this.handleError('getFixedBoards', []))
+    );
+  }
+
   postBoard(board: Board) {
     return this.http.post(`${environment.apiEndPoint}/api/board`, board)
     .pipe(

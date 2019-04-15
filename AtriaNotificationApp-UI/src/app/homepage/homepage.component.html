@@ -1,6 +1,10 @@
 <div class="bg-light home-page">  
   <div class="container">   
-    <app-banner></app-banner> 
+    <app-banner></app-banner>
+    <app-fixed-boards
+    (showcontent)="showContent($event)"
+    ></app-fixed-boards>
+    <hr>
     <app-board-carousel
     (showcontent)="showContent($event)"
     ></app-board-carousel>
