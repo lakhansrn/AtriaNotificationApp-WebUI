@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
     error = '';
     cancelled: any;
-    display = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -38,10 +37,6 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = '/';
-
-        this.navbarService.sigin$.subscribe(display => {
-            this.display = display;
-        });
     }
 
     // convenience getter for easy access to form fields
@@ -63,7 +58,6 @@ export class LoginComponent implements OnInit {
                     this.loadService.clearLoader();
                     this.loginForm.reset();
                     this.router.navigate([this.returnUrl]);
-                    this.display = !this.display;
                     this.error = null;
                 },
                 error => {

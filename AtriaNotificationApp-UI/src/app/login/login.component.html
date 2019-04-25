@@ -1,12 +1,13 @@
-<p-dialog header="Login" [(visible)]="display" 
+<p-dialog header="Login" visible="true" 
 [width]="270"
 [resizable]="false"
 [responsive]="false"
 [draggable]="false"
 [blockScroll]="true"
-modal="true"
+modal="false"
+[closable]="false"
 [positionTop]="100"
-dismissableMask="true">
+dismissableMask="false">
   <form [formGroup]="loginForm" class="login-container" (ngSubmit)="onSubmit()">
     <div class="p-2">
       <div class="form-group mb-4">

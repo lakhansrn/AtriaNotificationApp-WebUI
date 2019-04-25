@@ -33,8 +33,8 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.logout();
   }
 
-  login() {
-    this.navbarService.login();
-  }
+  // login() {
+  //   this.navbarService.login();
+  // }
 
 }
