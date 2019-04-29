@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Content } from '../model/content.model';
 import { BoardService, ImageUploadService, UserService, LoaderService, ToastService } from '../_services';
+import { NotificationGeneratedService, NotificationModel } from '../_services';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-writer',
@@ -44,6 +46,7 @@ export class WriterComponent implements OnInit {
     private boardService: BoardService,
     private loaderService: LoaderService,
     private toastService: ToastService,
+    private notificationService: NotificationGeneratedService,
     private userService: UserService) {
     }
 
@@ -83,16 +86,20 @@ export class WriterComponent implements OnInit {
   }
 
   submitContent() {
+    let success_submit = true;
     const upload = (uploadContent) => {
       let img_path = null;
       this.loaderService.setLoader();
       this.imageUploadService.uploadImage(this.image_file)
         .subscribe(res => {
           if (res['secure_url']) {
+            // image sent successfully
+            success_submit = true;
             img_path = res['secure_url'];
             this.user_content.image = img_path;
             uploadContent();
           } else {
+            success_submit = false;
             this.loaderService.clearLoader();
             this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
           }
@@ -104,6 +111,14 @@ export class WriterComponent implements OnInit {
         this.updateContentRequest();
     } else {
       upload(this.postContentRequest.bind(this));
+    }
+
+    if (success_submit) {
+      this.notificationService.broadcast(<NotificationModel> {
+        message: this.user_content.description,
+        title: this.user_content.title,
+        url: environment.apiEndPoint
+      }).subscribe(res => console.log(res));
     }
   }
 

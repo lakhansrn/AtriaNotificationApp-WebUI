@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Announcement } from '../../model/announcement.model';
 import { BoardService, ImageUploadService, LoaderService, ToastService } from '../../_services';
 import { BoardAnnouncementCreationService } from '../service/board-announcement-creation.service';
+import { NotificationGeneratedService, NotificationModel } from '../../_services';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-announcement-creation',
@@ -34,7 +36,8 @@ export class AnnouncementCreationComponent implements OnInit {
     private imageUploadService: ImageUploadService,
     private loaderService: LoaderService,
     private toastService: ToastService,
-    private boardAnnouncementService: BoardAnnouncementCreationService
+    private boardAnnouncementService: BoardAnnouncementCreationService,
+    private notificationService: NotificationGeneratedService
   ) { }
 
   ngOnInit() {
@@ -51,14 +54,19 @@ export class AnnouncementCreationComponent implements OnInit {
   }
 
   announcementSubmit() {
+    let success_submit = true;
+
     this.loaderService.setLoader();
     const upload = (uploadContent) => {
       this.imageUploadService.uploadImage(this.imgFile)
         .subscribe(res => {
           if (res['secure_url']) {
+            // image sent successfully
             this.announcementData.img = res['secure_url'];
+            success_submit = true;
             uploadContent();
           } else {
+            success_submit = false;
             this.toastService.setToastMsg({key: 'alert', severity: 'error', summary: 'Error', detail: 'Error while uploading image'});
             this.loaderService.clearLoader();
           }
@@ -76,6 +84,14 @@ export class AnnouncementCreationComponent implements OnInit {
       } else {
         this.uploadAnnouncement();
       }
+    }
+
+    if (success_submit) {
+      this.notificationService.broadcast(<NotificationModel> {
+        message: this.announcementData.description,
+        title: this.announcementData.title,
+        url: environment.apiEndPoint
+      }).subscribe(res => console.log(res));
     }
   }
 

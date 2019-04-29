@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'http://localhost:50831'
+  apiEndPoint: 'http://localhost:50831',
+  applicationServerPublicKey: `BAnaBNF3Tfhzb2dpG1pQbEjCZ6LP3E9ElnJdIYzwGNDvRY_41VEX-COO5dPE9ituIj9FGAPNKvBc7ws8kgZLIJk`
 };
 
 /*
